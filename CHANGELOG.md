@@ -9,6 +9,15 @@ while writing, and names the issue that has the detail. Versions follow
 Merged but not yet released. Each entry moves into the next version's section
 when that version ships.
 
+### The checking models download once, checked, from pinned sources
+
+Still nothing to try in a browser. `npm run fetch-models` downloads the English
+and Arabic models (about 18 MB) from exact, pinned versions and refuses any
+file that doesn't match its recorded fingerprint, so what you run is exactly
+what was reviewed. The runtime that executes the models is served from the
+page's own address, never from a third-party site. Every shipped file and its
+licence is listed in `NOTICE`. (#6)
+
 ### Groundwork for checking mixed Arabic and English text
 
 Still nothing to try. The core every checker will share is built and tested:

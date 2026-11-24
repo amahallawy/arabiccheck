@@ -16,7 +16,7 @@ arabiccheck/
     checker-ar/             adapter over tinyfix-ar 1.0.0 (AgDR-0002)
   apps/playground/          Vite + plain TypeScript page, one Web Worker, a service worker
   models.lock.json          pinned model files: URL, size, SHA-256 (AgDR-0003)
-  scripts/fetch-models.mjs  downloads and verifies the locked files
+  scripts/fetch-models.ts   downloads and verifies the locked files (AgDR-0005)
   eval/                     runner + test sets (AgDR-0004)
   NOTICE                    third-party models and word lists, with licences
 ```
@@ -103,7 +103,8 @@ the user kept typing). Load errors are posted back with the failing file name.
 ### Model delivery (AgDR-0003)
 
 - `models.lock.json` lists every file with its exact Hugging Face revision
-  URL, size and SHA-256. `npm run fetch-models` downloads into
+  URL, size and SHA-256. Every URL pins a full commit hash, never a branch
+  or tag (AgDR-0005). `npm run fetch-models` downloads into
   `apps/playground/public/models/{en,ar}/` (gitignored) and refuses any file
   whose hash differs.
 - `onnxruntime-web`'s `.wasm` files are copied to `public/ort/` at build, so

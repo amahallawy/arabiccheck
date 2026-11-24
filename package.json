@@ -13,15 +13,18 @@
     "node": ">=24"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "fetch-models": "node --use-system-ca scripts/fetch-models.ts",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p scripts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "build": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
+    "@types/node": "24.19.2",
     "@vitest/coverage-v8": "5.1.0",
     "typescript": "7.0.2",
     "vitest": "5.1.0"

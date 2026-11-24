@@ -53,7 +53,13 @@ npm ci                  # install
 npm run typecheck       # TypeScript, strict
 npm test                # unit tests (npm run test:coverage for coverage)
 npm run build           # build every package
+npm run fetch-models    # download the models (about 18 MB) and check their hashes
 ```
+
+Model files are not in the repository. `fetch-models` downloads them from the
+pinned commits in `models.lock.json` into `apps/playground/public/models/` and
+stops on any file whose size or SHA-256 differs. Third-party files and their
+licences are listed in [`NOTICE`](NOTICE).
 
 Code lives in `packages/` (`core` is the shared, dependency-free part). Design
 documents are in `docs/`, and the decisions behind them in `docs/agdr/`.
