@@ -1,0 +1,22 @@
+{
+  "name": "@arabiccheck/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Suggestion types, language runs, masking, merging and applying for ArabicCheck. No dependencies.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}

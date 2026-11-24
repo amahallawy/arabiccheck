@@ -1,6 +1,6 @@
 # AgDR-0003: Self-host pinned, hash-checked model files; cache them with a service worker
 
-**Status**: Proposed · **Date**: 2026-11-24 · **Decided by**: Claude (for owner review) · **Issue**: #3
+**Status**: Accepted (PR #4, 2026-11-24) · **Date**: 2026-11-24 · **Decided by**: Claude, accepted by the owner · **Issue**: #3
 
 ## Context
 

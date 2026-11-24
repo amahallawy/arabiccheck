@@ -44,6 +44,20 @@ change a word you meant.
 - Some things need large cloud models and are out of scope: rewriting for tone,
   and the deepest Arabic grammar checks for now.
 
+## Development
+
+You need Node 24 or newer and npm.
+
+```sh
+npm ci                  # install
+npm run typecheck       # TypeScript, strict
+npm test                # unit tests (npm run test:coverage for coverage)
+npm run build           # build every package
+```
+
+Code lives in `packages/` (`core` is the shared, dependency-free part). Design
+documents are in `docs/`, and the decisions behind them in `docs/agdr/`.
+
 ## Credits
 
 ArabicCheck builds on open work, including tinyfix (paperweight), tinyfix-ar
