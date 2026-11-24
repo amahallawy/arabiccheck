@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.output/
+.wxt/
+*.tsbuildinfo
+coverage/
+
+# Downloaded models and dictionaries (fetched by scripts, never committed)
+.cache/
+models/cache/
+
+# Python (training/)
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
