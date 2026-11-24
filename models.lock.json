@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "sets": [
+    {
+      "id": "en",
+      "package": "tinyfix@0.1.1",
+      "source": "https://huggingface.co/paperweight/tinyfix",
+      "revision": "8efdf5cd91b32584f4077aa0e8ecaf48f7651bef",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "words.txt",
+          "url": "https://huggingface.co/paperweight/tinyfix/resolve/8efdf5cd91b32584f4077aa0e8ecaf48f7651bef/words.txt",
+          "size": 1282042,
+          "sha256": "f84bfae717ff3a4a3b90c824ed06ea08e4b2ed2746f7bba63d4e52f2c8bf85c3"
+        },
+        {
+          "name": "wrong-word.onnx",
+          "url": "https://huggingface.co/paperweight/tinyfix/resolve/8efdf5cd91b32584f4077aa0e8ecaf48f7651bef/wrong-word.onnx",
+          "size": 2092692,
+          "sha256": "35d76c0f2cc1fbb5450188a749f4c10b0d569d8806bb939bd66fa926561b47e9"
+        },
+        {
+          "name": "wrong-word-vocab.txt",
+          "url": "https://huggingface.co/paperweight/tinyfix/resolve/8efdf5cd91b32584f4077aa0e8ecaf48f7651bef/wrong-word-vocab.txt",
+          "size": 171815,
+          "sha256": "14ddd048052cf547d570c5c75b18843527916f892d2650fd0c3009b783b976a1"
+        },
+        {
+          "name": "wrong-word-confusions.txt",
+          "url": "https://huggingface.co/paperweight/tinyfix/resolve/8efdf5cd91b32584f4077aa0e8ecaf48f7651bef/wrong-word-confusions.txt",
+          "size": 2908,
+          "sha256": "9924ff7ed577595ae1b632adbbf3324779a6857d3eb102715e63abf5981d06d3"
+        }
+      ]
+    },
+    {
+      "id": "ar",
+      "package": "tinyfix-ar@1.0.0",
+      "source": "https://huggingface.co/ali77a/tinyfix-ar",
+      "revision": "f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a",
+      "tag": "v1.0.0",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "manifest.json",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/manifest.json",
+          "size": 667,
+          "sha256": "d6f37e45dacb36d11011b7fb7f826d038f425af75b14e0892d360f013a42eb98"
+        },
+        {
+          "name": "kinds.json",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/kinds.json",
+          "size": 176,
+          "sha256": "b1a678dd0573b661e2baa0f588565958cf8e485e8db9924f93fb557730e423d4"
+        },
+        {
+          "name": "vocab.txt",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/vocab.txt",
+          "size": 1275196,
+          "sha256": "ca0dbbaba10e20d248f6e9398d2a371c607237dd0a631d35b4ca63af379f750d"
+        },
+        {
+          "name": "neighbors.u32",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/neighbors.u32",
+          "size": 3200000,
+          "sha256": "9314d8dd21b85abf5d221ebcf5b134c7ee3b4010a340bb534e83331453f6b341"
+        },
+        {
+          "name": "neighbor_kinds.u8",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/neighbor_kinds.u8",
+          "size": 800000,
+          "sha256": "872f76a9e8d5c690d024290820fd21476e271be7fd3f2e387358373550a3907d"
+        },
+        {
+          "name": "valid.u8",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/valid.u8",
+          "size": 100000,
+          "sha256": "f53a0ff60a837049ed506e6ff77b513e057be183024d5a076afe0df7d73572fe"
+        },
+        {
+          "name": "model.onnx",
+          "url": "https://huggingface.co/ali77a/tinyfix-ar/resolve/f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a/model.onnx",
+          "size": 9027149,
+          "sha256": "1a799fbc68ff6ee1547228df41179e4f34c173de21c0233bd7cd8a3afa4c04b8"
+        }
+      ]
+    }
+  ]
+}

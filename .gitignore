@@ -13,6 +13,9 @@ coverage/
 # Downloaded models and dictionaries (fetched by scripts, never committed)
 .cache/
 models/cache/
+apps/playground/public/models/
+apps/playground/public/ort/
+*.partial
 
 # Python (training/)
 __pycache__/
