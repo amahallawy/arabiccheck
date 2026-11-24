@@ -49,6 +49,11 @@ choices it left open:
   thread means no cross-origin isolation headers are needed.
 - `fetch-models` never edits the lock. `--relock` re-downloads every locked
   URL and rewrites sizes and hashes; it is the only way the lock changes.
+  Downloads follow redirects (Hugging Face serves large files from its CDN).
+  A normal run needn't trust the redirect target, because the bytes must
+  match the locked hash; `--relock` does trust it (capped at 64 MB a file,
+  empty bodies refused, the new lock re-validated before writing), so a
+  relock's diff of `models.lock.json` is reviewed like code.
 
 ## Consequences
 

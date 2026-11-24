@@ -52,6 +52,20 @@ describe("parseLock", () => {
     ["a file name of dots", (l) => (l.sets[0].files[0].name = ".."), "sets[0].files[0].name"],
     ["a duplicate file name", (l) => l.sets[0].files.push({ ...l.sets[0].files[0] }), "sets[0].files[1].name"],
     [
+      "a file name that differs only in case",
+      (l) =>
+        l.sets[0].files.push({
+          ...l.sets[0].files[0],
+          name: "Words.txt",
+          url: `${SOURCE}/resolve/${REV}/Words.txt`,
+        }),
+      "sets[0].files[1].name",
+    ],
+    ["a file name with a trailing dot", (l) => (l.sets[0].files[0].name = "words."), "sets[0].files[0].name"],
+    ["a Windows device name", (l) => (l.sets[0].files[0].name = "nul.txt"), "sets[0].files[0].name"],
+    ["a temporary file name", (l) => (l.sets[0].files[0].name = "words.partial"), "sets[0].files[0].name"],
+    ["an empty tag", (l) => (l.sets[0].tag = ""), "sets[0].tag"],
+    [
       "a URL at another revision",
       (l) => (l.sets[0].files[0].url = `${SOURCE}/resolve/main/words.txt`),
       "sets[0].files[0].url",

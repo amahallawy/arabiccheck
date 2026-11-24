@@ -12,8 +12,14 @@ tinyfix: English spelling list and real-word model
 --------------------------------------------------------------------------------
 Source:    https://huggingface.co/paperweight/tinyfix
 Revision:  8efdf5cd91b32584f4077aa0e8ecaf48f7651bef (used by the tinyfix 0.1.1 npm package)
-Licence:   MIT (model card), Copyright (c) 2026 Caleb Fahlgren (tinyfix package licence)
+Licence:   MIT, Copyright (c) 2026 Caleb Fahlgren. The model card declares MIT
+           from commit 5b1491e3e3a59ca75a51a952912ca1200b172d87 (2026-11-16); the
+           card at the pinned commit has no licence field. The four files below
+           are byte-identical at both commits (same git object IDs). The tinyfix
+           npm package that loads them is MIT under the same copyright.
 Files:     words.txt, wrong-word.onnx, wrong-word-vocab.txt, wrong-word-confusions.txt
+Training:  per the model card: FineWeb-Edu (ODC-By 1.0), SmolTalk (no licence
+           stated on its card), OpenAssistant oasst1 (Apache-2.0)
 Served at: /models/en/
 
 --------------------------------------------------------------------------------
@@ -21,9 +27,14 @@ tinyfix-ar: Arabic real-word and spelling model with its lexicon
 --------------------------------------------------------------------------------
 Source:    https://huggingface.co/ali77a/tinyfix-ar
 Revision:  f760e7eafcdd030fb5043a4b10a00b78cc0c5d3a (tag v1.0.0; used by the tinyfix-ar 1.0.0 npm package)
-Licence:   MIT (model card), Copyright (c) 2026 tinyfix-ar contributors (tinyfix-ar package licence)
+Licence:   MIT (declared on the model card at the pinned commit), Copyright (c)
+           2026 tinyfix-ar contributors (tinyfix-ar npm package licence)
 Files:     manifest.json, kinds.json, vocab.txt, neighbors.u32, neighbor_kinds.u8,
            valid.u8, model.onnx
+Training:  per the model card: Arabic Wikipedia (CC BY-SA 3.0), FineWeb2-HQ and
+           FineWeb2 Saudi sites (ODC-By), Hindawi books (CC BY 4.0), Arabic chat
+           sets and Aya (Apache-2.0), Al Jazeera news, UN General Assembly text,
+           QALB-2014 corrected text, and about 8,500 hand-checked sentences
 Served at: /models/ar/
 
 --------------------------------------------------------------------------------

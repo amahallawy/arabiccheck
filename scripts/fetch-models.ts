@@ -6,15 +6,14 @@
 //                                         models.lock.json with what was served
 //
 // Without --relock the lock is never written, and any mismatch fails the run.
-import { readFile, writeFile } from "node:fs/promises";
+// --relock trusts whatever the locked URLs serve (each capped at 64 MB), so its
+// diff of models.lock.json must be reviewed like code.
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { parseLock } from "./lib/lock.ts";
-import { syncModels } from "./lib/sync.ts";
+import { fetchModels } from "./lib/fetch-models.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
-const lockPath = join(root, "models.lock.json");
 
 try {
   const { values } = parseArgs({
@@ -23,14 +22,13 @@ try {
       relock: { type: "boolean", default: false },
     },
   });
-  const lock = parseLock(JSON.parse(await readFile(lockPath, "utf8")));
-  const result = await syncModels(lock, {
+  const result = await fetchModels({
+    lockPath: join(root, "models.lock.json"),
     outDir: resolve(values.out),
     relock: values.relock,
     log: (line) => console.log(line),
   });
   if (values.relock) {
-    await writeFile(lockPath, `${JSON.stringify(result.lock, null, 2)}\n`);
     console.log(
       result.changed.length === 0
         ? "relock: no size or hash changed"

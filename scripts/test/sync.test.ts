@@ -91,6 +91,7 @@ describe("syncModels", () => {
       syncModels(lockFor(CONTENT), { outDir: out, fetch: fakeFetch(served) }),
     ).rejects.toThrow(/en\/a\.txt.*sha256/);
     expect(existsSync(join(out, "en", "a.txt"))).toBe(false);
+    expect(await readdir(join(out, "en"))).toEqual([]); // no .partial either
   });
 
   it("fails on a size mismatch", async () => {
@@ -98,6 +99,56 @@ describe("syncModels", () => {
     await expect(
       syncModels(lockFor(CONTENT), { outDir: out, fetch: fakeFetch(served) }),
     ).rejects.toThrow(/en\/b\.onnx.*size/);
+  });
+
+  it("fails on a body smaller than the locked size", async () => {
+    await expect(
+      syncModels(lockFor(CONTENT), { outDir: out, fetch: fakeFetch({ ...CONTENT, "b.onnx": "bravo" }) }),
+    ).rejects.toThrow(/en\/b\.onnx: size is 5 bytes, the lock says 11/);
+  });
+
+  it("stops reading a body that is bigger than the locked size", async () => {
+    const huge = "x".repeat(1000);
+    await expect(
+      syncModels(lockFor(CONTENT), { outDir: out, fetch: fakeFetch({ ...CONTENT, "a.txt": huge }) }),
+    ).rejects.toThrow(/en\/a\.txt: size is over 6 bytes/);
+    expect(await readdir(join(out, "en"))).toEqual([]);
+  });
+
+  it("refuses a declared Content-Length over the limit before reading the body", async () => {
+    let bodyRead = false;
+    // highWaterMark 0: the stream pulls only when someone reads it.
+    const body = new ReadableStream<Uint8Array>(
+      {
+        pull(controller) {
+          bodyRead = true;
+          controller.enqueue(new TextEncoder().encode("alpha\n"));
+          controller.close();
+        },
+      },
+      { highWaterMark: 0 },
+    );
+    const fetch: Fetch = async () =>
+      new Response(body, { headers: { "content-length": "999999999" } });
+    await expect(syncModels(lockFor(CONTENT), { outDir: out, fetch })).rejects.toThrow(/size is over/);
+    expect(bodyRead).toBe(false);
+  });
+
+  it("refuses an empty response", async () => {
+    await expect(
+      syncModels(lockFor(CONTENT), { outDir: out, fetch: fakeFetch({ ...CONTENT, "a.txt": "" }) }),
+    ).rejects.toThrow(/en\/a\.txt: empty response/);
+  });
+
+  it("with relock, still caps the size of each file", async () => {
+    await expect(
+      syncModels(lockFor(CONTENT), {
+        outDir: out,
+        fetch: fakeFetch(CONTENT),
+        relock: true,
+        relockMaxBytes: 8, // b.onnx is 11 bytes
+      }),
+    ).rejects.toThrow(/en\/b\.onnx: size is over the 8-byte limit for --relock/);
   });
 
   it("fails on an HTTP error, naming the URL and status", async () => {

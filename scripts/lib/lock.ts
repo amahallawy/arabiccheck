@@ -42,8 +42,11 @@ type JsonObject = Record<string, unknown>;
 const SET_ID = /^[a-z][a-z0-9-]*$/;
 const COMMIT = /^[0-9a-f]{40}$/;
 const SHA256 = /^[0-9a-f]{64}$/;
-// Starts with a letter or digit, so "." and ".." are rejected, and no "/" or "\".
-const FILE_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+// Starts and ends with a letter or digit, so "." and ".." are rejected, Windows'
+// silently dropped trailing dot can't make two names collide, and no "/" or "\".
+const FILE_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?$/;
+// Device names Windows reserves, with or without an extension.
+const WINDOWS_RESERVED = /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\..*)?$/i;
 const HF_SOURCE = /^https:\/\/huggingface\.co\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 
 function isObject(value: unknown): value is JsonObject {
@@ -63,10 +66,20 @@ function text(object: JsonObject, key: string, path: string): string {
 function parseFile(value: unknown, path: string, urlPrefix: string, names: Set<string>): LockedFile {
   if (!isObject(value)) fail(path, "must be an object");
   const name = text(value, "name", path);
-  if (!FILE_NAME.test(name) || names.has(name)) {
-    fail(`${path}.name`, "must be a unique plain file name (letters, digits, '.', '_', '-')");
+  // Unique ignoring case: Windows and macOS file systems treat A.txt and a.txt as one file.
+  const key = name.toLowerCase();
+  if (
+    !FILE_NAME.test(name) ||
+    WINDOWS_RESERVED.test(name) ||
+    key.endsWith(".partial") ||
+    names.has(key)
+  ) {
+    fail(
+      `${path}.name`,
+      "must be a unique (ignoring case) plain file name of letters, digits, '.', '_' and '-'",
+    );
   }
-  names.add(name);
+  names.add(key);
   const url = text(value, "url", path);
   if (url !== urlPrefix + name) fail(`${path}.url`, `must be ${urlPrefix + name}`);
   const size = value["size"];

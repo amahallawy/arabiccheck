@@ -18,6 +18,8 @@ export interface SyncOptions {
   readonly log?: (line: string) => void;
   /** Per-file download timeout. Defaults to two minutes. */
   readonly timeoutMs?: number;
+  /** Largest file `--relock` accepts. Defaults to `RELOCK_MAX_BYTES`. */
+  readonly relockMaxBytes?: number;
 }
 
 export interface SyncResult {
@@ -41,7 +43,19 @@ async function readIfPresent(path: string): Promise<Uint8Array | undefined> {
   }
 }
 
-async function download(fetch: Fetch, url: string, timeoutMs: number): Promise<Uint8Array> {
+/** Largest file `--relock` accepts, where there is no locked size to cap a download at. */
+export const RELOCK_MAX_BYTES = 64 * 1024 * 1024;
+
+/** Thrown when a response is bigger than allowed; the caller turns it into a message. */
+class TooLarge extends Error {}
+
+/**
+ * Downloads `url`, following redirects (Hugging Face serves large files from
+ * its CDN). Without `--relock` the redirect target needs no trust: the bytes
+ * are checked against the locked hash. Reading stops as soon as the body
+ * passes `limit` bytes, so a wrong or hostile response can't fill memory.
+ */
+async function download(fetch: Fetch, url: string, limit: number, timeoutMs: number): Promise<Uint8Array> {
   let response: Response;
   try {
     response = await fetch(url, { redirect: "follow", signal: AbortSignal.timeout(timeoutMs) });
@@ -54,7 +68,38 @@ async function download(fetch: Fetch, url: string, timeoutMs: number): Promise<U
     throw new Error(`could not download ${url}: ${message}${reason}`, { cause: error });
   }
   if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-  return new Uint8Array(await response.arrayBuffer());
+
+  const declared = Number(response.headers.get("content-length") ?? Number.NaN);
+  if (declared > limit) {
+    await response.body?.cancel();
+    throw new TooLarge();
+  }
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  const reader = response.body?.getReader();
+  for (;;) {
+    const chunk = reader ? await reader.read() : { done: true as const, value: undefined };
+    if (chunk.done) break;
+    total += chunk.value.byteLength;
+    if (total > limit) {
+      await reader?.cancel();
+      throw new TooLarge();
+    }
+    chunks.push(chunk.value);
+  }
+  if (total === 0) throw new Error(`empty response from ${url}`);
+  return new Uint8Array(Buffer.concat(chunks, total));
+}
+
+/** Writes via `<dest>.partial` and a rename; removes the partial file if anything fails. */
+async function writeAtomically(dest: string, bytes: Uint8Array): Promise<void> {
+  const partial = `${dest}.partial`;
+  try {
+    await writeFile(partial, bytes);
+    await rename(partial, dest);
+  } finally {
+    await rm(partial, { force: true });
+  }
 }
 
 /**
@@ -94,7 +139,24 @@ export async function syncModels(lock: Lock, options: SyncOptions): Promise<Sync
       }
 
       log(`fetch  ${label}`);
-      const bytes = await download(fetch, file.url, timeoutMs);
+      const relockMax = options.relockMaxBytes ?? RELOCK_MAX_BYTES;
+      const limit = relock ? relockMax : file.size;
+      let bytes: Uint8Array;
+      try {
+        bytes = await download(fetch, file.url, limit, timeoutMs);
+      } catch (error) {
+        if (!(error instanceof TooLarge)) {
+          throw new Error(`${label}: ${error instanceof Error ? error.message : String(error)}`, {
+            cause: error,
+          });
+        }
+        if (!relock) await rm(dest, { force: true });
+        throw new Error(
+          relock
+            ? `${label}: size is over the ${relockMax}-byte limit for --relock`
+            : `${label}: size is over ${file.size} bytes, the lock says ${file.size}`,
+        );
+      }
       const served: LockedFile = { ...file, size: bytes.byteLength, sha256: sha256(bytes) };
 
       if (relock) {
@@ -107,8 +169,7 @@ export async function syncModels(lock: Lock, options: SyncOptions): Promise<Sync
         throw new Error(`${label}: sha256 is ${served.sha256}, the lock says ${file.sha256}`);
       }
 
-      await writeFile(`${dest}.partial`, bytes);
-      await rename(`${dest}.partial`, dest);
+      await writeAtomically(dest, bytes);
       downloaded++;
       files.push(served);
     }
