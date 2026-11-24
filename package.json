@@ -7,5 +7,23 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amahallawy/arabiccheck.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "5.1.0",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
   }
 }

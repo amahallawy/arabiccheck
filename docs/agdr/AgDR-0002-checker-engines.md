@@ -1,6 +1,6 @@
 # AgDR-0002: Use the tinyfix and tinyfix-ar packages behind our own adapters
 
-**Status**: Proposed · **Date**: 2026-11-24 · **Decided by**: Claude (for owner review) · **Issue**: #3
+**Status**: Accepted (PR #4, 2026-11-24) · **Date**: 2026-11-24 · **Decided by**: Claude, accepted by the owner · **Issue**: #3
 
 ## Context
 

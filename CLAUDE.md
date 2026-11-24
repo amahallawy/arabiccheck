@@ -14,9 +14,13 @@ Arabic and English, MIT, public) are in Company ADR-0004.
 
 **Marker 1 (automated review) — all of:**
 
-- Manual review of the diff by Claude's code-reviewer agent with no blocking
-  issues — until CI is added. Once CI exists, its workflows are listed here and
-  become required checks.
+- The **CI** workflow (`.github/workflows/ci.yml`, job `Typecheck, test,
+  build`) is green on the PR's HEAD: `npm ci`, typecheck, unit tests with the
+  80% coverage threshold, and build.
+- Review of the diff by Claude's code-reviewer agent with no blocking issues.
+
+Run the same checks locally before pushing:
+`npm run typecheck && npm run test:coverage && npm run build`.
 
 **Marker 2 (explicit authorization):**
 
@@ -25,7 +29,7 @@ Arabic and English, MIT, public) are in Company ADR-0004.
 ### Current state: active
 
 PR-first workflow is in use from the first commit. Enable GitHub branch
-protection on `main` requiring a PR (and the CI checks above, once they exist).
+protection on `main` requiring a PR and the `Typecheck, test, build` check.
 `gh pr merge` requires Marker 2 before merging.
 
 ## Status report

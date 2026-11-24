@@ -2,7 +2,7 @@
 
 **Parent issue**: #3
 **Created**: 2026-11-24
-**Status**: Draft (awaiting owner approval)
+**Status**: Approved (PR #4, 2026-11-24)
 **Due**: 2026-12-08
 **Input**: Owner decisions in Company ADR-0004: offline-only, Arabic and English,
 MIT, a playground first and the browser extension after.

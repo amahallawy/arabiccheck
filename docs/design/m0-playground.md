@@ -1,7 +1,7 @@
 # Tech Design: M0 — offline playground
 
 **Spec**: [`docs/specs/m0-playground.md`](../specs/m0-playground.md) · **Parent issue**: #3
-**Status**: Draft (awaiting owner approval)
+**Status**: Approved (PR #4, 2026-11-24)
 **Decisions**: AgDR-0001 (repo tooling), AgDR-0002 (checker engines),
 AgDR-0003 (model delivery), AgDR-0004 (evaluation)
 
@@ -58,17 +58,26 @@ interface Checker {
 ```
 
 - **Language runs.** A character is Arabic if it is in the Arabic blocks
-  (U+0600–06FF, 0750–077F, 08A0–08FF, FB50–FDFF, FE70–FEFF), Latin if it is
-  `A–Z a–z`, otherwise neutral. Neutral characters join the run on their
-  left. No model is needed for two scripts this distinct.
+  (U+0600–06FF, 0750–077F, 0870–08FF, FB50–FDFF, FE70–FEFE), Latin if it is
+  `A–Z a–z`, otherwise neutral. U+FEFF (the byte order mark) is neutral.
+  Arabic-Indic digits are in the Arabic block, so they count as Arabic.
+  Neutral characters join the run before them in reading order; neutral
+  characters before any letter form a neutral run. No model is needed for
+  two scripts this distinct. (Refined in #5: Arabic Extended-B, U+0870–089F,
+  added; U+FEFF excluded; "on their left" made precise for RTL text.)
 - **Masking** keeps offsets exact without any mapping: each checker gets a
   copy of the text in which every character of the *other* language is
   replaced by a space. The copy has the same length, so every span the
   checker returns is already a span in the original text.
 - **Merging** sorts by start, removes overlaps (higher score wins), drops
   ignored words, and drops anything whose span no longer holds `typed`.
+  Scores are compared only within one `scoreKind`: when suggestions with
+  different score kinds (confidence vs margin) overlap, both are dropped,
+  since their scores aren't comparable and a conflict isn't worth showing.
+  Suggestions with a non-finite score are dropped too. (Refined in #5.)
 - **Applying** a suggestion checks `text.slice(start, end) === typed` first;
-  otherwise it does nothing (spec FR-003).
+  otherwise it does nothing (spec FR-003). Empty spans, and spans that split a
+  surrogate pair, are never applied.
 
 ### Checker adapters
 

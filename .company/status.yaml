@@ -4,8 +4,8 @@ schema: 1
 updated: 2026-11-24
 goal: "M0: offline playground page with Arabic and English spelling and real-word fixes, plus an evaluation harness"
 due: 2026-12-08
-progress: 5
-progress_note: "Repo bootstrapped (#1); next: M0 spec, tech design with AgDRs, and story issues"
+progress: 15
+progress_note: "Spec, design and AgDR-0001..0004 approved (#4); workspace and core (#5) in review; next: model delivery (#6)"
 health: on-track
 blockers:
 next_release: "0.1.0"
