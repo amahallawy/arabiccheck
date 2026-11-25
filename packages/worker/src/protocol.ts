@@ -53,16 +53,64 @@ export type StatusMessage = ReadyMessage | LoadErrorMessage;
 /** What both ends need of a Worker, a worker's global scope or a MessagePort. */
 export interface MessageTarget {
   postMessage(message: unknown): void;
-  addEventListener(type: "message", listener: (event: { readonly data: unknown }) => void): void;
+  /**
+   * "message" carries protocol data. A Worker also fires "error" when its script fails or
+   * crashes, and "messageerror" when a message can't be deserialised; a MessagePort fires
+   * only "message" and "messageerror".
+   */
+  addEventListener(
+    type: "message" | "error" | "messageerror",
+    listener: (event: { readonly data?: unknown; readonly message?: unknown }) => void,
+  ): void;
 }
 
-const hasType = (value: unknown): value is { type: unknown } =>
-  typeof value === "object" && value !== null && "type" in value;
+type JsonObject = Record<string, unknown>;
 
+const isObject = (value: unknown): value is JsonObject =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+const isLang = (value: unknown): value is Lang => value === "ar" || value === "en";
+const isOptionalString = (value: unknown): boolean => value === undefined || typeof value === "string";
+const isStringArray = (value: unknown): boolean =>
+  Array.isArray(value) && value.every((item) => typeof item === "string");
+
+/** True for a well-formed `init` or `check` message; anything else is ignored by the worker. */
 export function isToWorker(value: unknown): value is ToWorker {
-  return hasType(value) && (value.type === "init" || value.type === "check");
+  if (!isObject(value)) return false;
+  if (value["type"] === "init") {
+    const models = value["models"];
+    return (
+      isObject(models) &&
+      typeof models["ar"] === "string" &&
+      typeof models["en"] === "string" &&
+      isOptionalString(value["wasmPaths"])
+    );
+  }
+  if (value["type"] === "check") {
+    return (
+      Number.isFinite(value["version"]) &&
+      typeof value["text"] === "string" &&
+      (value["ignored"] === undefined || isStringArray(value["ignored"]))
+    );
+  }
+  return false;
 }
 
+/** True for a well-formed message from the worker; anything else is ignored by the client. */
 export function isFromWorker(value: unknown): value is FromWorker {
-  return hasType(value) && (value.type === "ready" || value.type === "load-error" || value.type === "result");
+  if (!isObject(value)) return false;
+  switch (value["type"]) {
+    case "ready":
+      return isLang(value["lang"]) && typeof value["loadMs"] === "number";
+    case "load-error":
+      return isLang(value["lang"]) && typeof value["message"] === "string" && isOptionalString(value["file"]);
+    case "result":
+      return (
+        Number.isFinite(value["version"]) &&
+        Array.isArray(value["suggestions"]) &&
+        isObject(value["timings"]) &&
+        Array.isArray(value["errors"])
+      );
+    default:
+      return false;
+  }
 }

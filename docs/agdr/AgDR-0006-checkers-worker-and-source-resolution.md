@@ -69,6 +69,11 @@ missing file when a load fails. No fallback runtime is needed.
 ## Consequences
 
 - Dependent packages typecheck and test from a clean checkout without a build.
+- Masking costs some context: the Arabic model reads the words on either side
+  of an English word as neighbours, with only spaces between. The design
+  accepts this for M0; mixed-text cases in the evaluation (#10) measure it.
+- One client per worker: the worker answers only the newest version it has
+  seen, so a second client starting again at version 1 would be ignored.
 - Every PR runs the issue's real sentences on the real models, so a model or
   adapter regression shows up in CI, at the cost of an ~18 MB download on a
   cache miss.

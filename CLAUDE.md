@@ -78,6 +78,11 @@ This project reports to Company through `.company/status.yaml` (goal, due, progr
 - No non-commercial (NC) or research-only weights or data in anything that ships.
 - Research-only data (for example QALB) may be used for evaluation only, never
   for training released weights, unless its licence is confirmed to allow it.
+- **One exception (owner decision, Company ADR-0005):** the third-party
+  tinyfix-ar model may ship although its author trained it partly on
+  QALB-2014 corrected text. It covers that model only; ArabicCheck's own
+  weights still never train on QALB, and any other research-derived weights
+  need their own owner decision.
 - Each released model gets a data card listing its training sources.
 
 ### Layout (planned; each piece lands with its own issue and AgDR)

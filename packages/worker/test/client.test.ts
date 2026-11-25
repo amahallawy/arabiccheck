@@ -2,15 +2,23 @@ import { describe, expect, it } from "vitest";
 import { createCheckerClient } from "../src/client.js";
 import type { MessageTarget, ResultMessage } from "../src/protocol.js";
 
-/** A fake worker: records what the client posts and lets the test reply. */
+type Listener = (event: { readonly data?: unknown; readonly message?: unknown }) => void;
+
+/** A fake worker: records what the client posts and lets the test reply or fail. */
 function fakeWorker() {
   const sent: unknown[] = [];
-  let listener: ((event: { readonly data: unknown }) => void) | undefined;
+  const listeners = new Map<string, Listener>();
   const target: MessageTarget = {
     postMessage: (message) => sent.push(message),
-    addEventListener: (_type, l) => (listener = l),
+    addEventListener: (type, listener) => listeners.set(type, listener),
   };
-  return { target, sent, reply: (data: unknown) => listener?.({ data }) };
+  return {
+    target,
+    sent,
+    reply: (data: unknown) => listeners.get("message")?.({ data }),
+    crash: (message: string) => listeners.get("error")?.({ message }),
+    garble: () => listeners.get("messageerror")?.({}),
+  };
 }
 
 const result = (version: number): ResultMessage => ({
@@ -66,12 +74,49 @@ describe("createCheckerClient", () => {
     expect(late).toEqual(["ready:en", "load-error:ar"]);
   });
 
+  it("when the worker dies, answers every check with an error and reports both languages failed", async () => {
+    const worker = fakeWorker();
+    const client = createCheckerClient(worker.target, MODELS);
+    const statuses: string[] = [];
+    client.onStatus((status) => statuses.push(`${status.type}:${status.lang}`));
+    const waiting = client.check("form");
+    worker.crash("Failed to fetch worker script");
+    worker.crash("again"); // reported once
+
+    const expected = {
+      suggestions: [],
+      timings: { totalMs: 0, byLang: {} },
+      errors: [
+        { lang: "ar", message: "the checker worker stopped: Failed to fetch worker script" },
+        { lang: "en", message: "the checker worker stopped: Failed to fetch worker script" },
+      ],
+    };
+    expect(await waiting).toEqual(expected);
+    expect(await client.check("later")).toEqual(expected);
+    expect(statuses).toEqual(["load-error:ar", "load-error:en"]);
+    expect(worker.sent.filter((m) => (m as { type: string }).type === "check")).toHaveLength(1);
+  });
+
+  it("answers the waiting check with an error when its reply can't be read", async () => {
+    const worker = fakeWorker();
+    const client = createCheckerClient(worker.target, MODELS);
+    const waiting = client.check("form");
+    worker.garble();
+    expect((await waiting)?.errors.map((e) => e.lang)).toEqual(["ar", "en"]);
+    // The worker still works: the next check is sent and answered normally.
+    const next = client.check("form");
+    worker.reply(result(2));
+    expect(await next).toMatchObject({ errors: [] });
+  });
+
   it("ignores messages that aren't from the worker protocol, and results it didn't ask for", async () => {
     const worker = fakeWorker();
     const client = createCheckerClient(worker.target, MODELS);
     const pending = client.check("form");
     worker.reply("hello");
     worker.reply({ type: "unknown" });
+    worker.reply({ type: "result", version: 1 }); // malformed: no suggestions, timings or errors
+    worker.reply({ type: "ready", lang: "fr", loadMs: 1 }); // not a language we check
     worker.reply(result(99));
     worker.reply(result(1));
     expect(await pending).toMatchObject({ suggestions: [] });

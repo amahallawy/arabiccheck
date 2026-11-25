@@ -41,17 +41,21 @@ export function createHandler(
 
   function load(lang: Lang, init: InitMessage): Promise<Checker | undefined> {
     const started = now();
-    return loaders[lang](init).then(
-      (checker) => {
-        post({ type: "ready", lang, loadMs: now() - started });
-        return checker;
-      },
-      (error: unknown) => {
-        const message = messageOf(error);
-        post({ type: "load-error", lang, ...fileOf(message), message });
-        return undefined;
-      },
-    );
+    // Through a promise, so a loader that throws synchronously (a malformed URL) is a
+    // load-error for that language too, not an escape that skips both.
+    return Promise.resolve()
+      .then(() => loaders[lang](init))
+      .then(
+        (checker) => {
+          post({ type: "ready", lang, loadMs: now() - started });
+          return checker;
+        },
+        (error: unknown) => {
+          const message = messageOf(error);
+          post({ type: "load-error", lang, ...fileOf(message), message });
+          return undefined;
+        },
+      );
   }
 
   async function check(request: CheckMessage): Promise<void> {
@@ -93,14 +97,18 @@ export function createHandler(
   return {
     handle(message) {
       if (message.type === "init") {
+        // One init per worker: its folders are fixed for the worker's life.
         if (checkers !== undefined) return Promise.resolve();
         const loading = new Map(LANGS.map((lang) => [lang, load(lang, message)] as const));
         checkers = loading;
         return Promise.all(loading.values()).then(() => undefined);
       }
       latest = Math.max(latest, message.version);
-      queue = queue.then(() => check(message));
-      return queue;
+      const run = queue.then(() => check(message));
+      // A check that fails unexpectedly rejects its own handle() call (serve logs it), but
+      // must not stop the checks queued after it.
+      queue = run.catch(() => undefined);
+      return run;
     },
   };
 }

@@ -10,8 +10,13 @@ const tick = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0
 
 /** A fake worker scope: lets the test send messages in and see what is posted back. */
 function fakeScope(postMessage: (message: unknown) => void) {
-  let listener: ((event: { readonly data: unknown }) => void) | undefined;
-  const scope: MessageTarget = { postMessage, addEventListener: (_type, l) => (listener = l) };
+  let listener: ((event: { readonly data?: unknown }) => void) | undefined;
+  const scope: MessageTarget = {
+    postMessage,
+    addEventListener: (type, l) => {
+      if (type === "message") listener = l;
+    },
+  };
   return { scope, send: (data: unknown) => listener?.({ data }) };
 }
 
@@ -36,18 +41,31 @@ describe("serve", () => {
     serve(scope, "http://x/", LOADERS);
     send("hello");
     send({ type: "nonsense" });
+    send({ type: "check", version: 1 }); // no text
+    send({ type: "check", version: "2", text: "x" }); // version not a number
+    send({ type: "check", version: 3, text: "x", ignored: "x" }); // ignored not a list
+    send({ type: "init", models: { en: "en/" } }); // no Arabic folder
     await tick();
     expect(posted).toEqual([]);
   });
 
-  it("logs an unexpected failure instead of swallowing it", async () => {
+  it("logs an unexpected failure instead of swallowing it, and keeps answering", async () => {
     const logged = vi.spyOn(console, "error").mockImplementation(() => {});
-    const { scope, send } = fakeScope(() => {
-      throw new Error("channel closed");
+    const posted: unknown[] = [];
+    let failNext = true;
+    const { scope, send } = fakeScope((message) => {
+      if (failNext) {
+        failNext = false;
+        throw new Error("channel closed");
+      }
+      posted.push(message);
     });
     serve(scope, "http://x/", LOADERS);
     send({ type: "check", version: 1, text: "hello" }); // posting its result throws
     await tick();
     expect(logged).toHaveBeenCalledWith("ArabicCheck worker:", expect.objectContaining({ message: "channel closed" }));
+    send({ type: "check", version: 2, text: "hello" });
+    await tick();
+    expect(posted).toEqual([expect.objectContaining({ type: "result", version: 2 })]);
   });
 });
