@@ -39,6 +39,11 @@ describe("outputTokens", () => {
     const crossing = { ...at(text, "form the", "from"), lang: "en" as const };
     expect(outputTokens(text, [crossing])).toEqual(["a", "letter", CROSSING, CROSSING, "bank"]);
   });
+
+  it("applies several suggestions inside one token without shifting each other", () => {
+    const text = "(الى/الرياظ)";
+    expect(outputTokens(text, [at(text, "الى", "إلى"), at(text, "الرياظ", "الرياض")])).toEqual(["(إلى/الرياض)"]);
+  });
 });
 
 describe("scoreCase", () => {
@@ -69,6 +74,23 @@ describe("scoreCase", () => {
       [4, "wrong-fix"],
     ]);
     expect(events[3]).toMatchObject({ id: "c1", typed: "الرياظ", output: "الرياط", expected: "الرياض" });
+  });
+
+  it("scores a boundary-crossing change as a wrong fix on errors and a false alarm on correct words", () => {
+    const text = "a letter form the bank";
+    const crossing = { ...at(text, "form the", "from"), lang: "en" as const };
+    const { counts, events } = scoreCase(testCase(text, "a letter from the bank"), [crossing]);
+    expect(counts).toMatchObject({ errors: 1, changes: 2, correctFixes: 0, wrongFixes: 1, falseAlarms: 1 });
+    expect(events.map((e) => [e.index, e.outcome])).toEqual([
+      [2, "wrong-fix"],
+      [3, "false-alarm"],
+    ]);
+  });
+
+  it("refuses a case whose text and expected differ in token count", () => {
+    expect(() => scoreCase(testCase("a letter form the bank", "a letter from bank"), [])).toThrow(
+      /c1: text has 5 tokens but expected has 4/,
+    );
   });
 
   it("records nothing for a clean case left alone", () => {

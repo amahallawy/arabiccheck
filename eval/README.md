@@ -6,7 +6,7 @@ models. The method is in [AgDR-0004](../docs/agdr/AgDR-0004-evaluation.md).
 ```sh
 npm run fetch-models                              # once: the models the runner loads
 npm run eval                                      # score the seed sets below
-npm run eval -- --set C:\data\qalb-dev.jsonl      # also score a local set (never committed)
+npm run eval -- --set eval/local/qalb-dev.jsonl   # also score a local set (never committed)
 npm run eval -- --json other-report.json          # write the report somewhere else
 ```
 
@@ -45,7 +45,7 @@ clean set whose `expected` differs from its `text`.
 
 | Set | What | Size |
 |---|---|---|
-| `en-errors` | misspellings and real-word errors, one or two per sentence | 151 sentences, 1,227 words |
+| `en-errors` | misspellings and real-word errors, one or two per sentence | 151 sentences, 1,224 words |
 | `en-clean` | correct English, many sentences using commonly confused words correctly | 150 sentences, 1,216 words |
 | `ar-errors` | hamza, taa marbuta, alef maqsura, sound-alike letters, letter swaps; some with English words inside | 150 sentences, 894 words |
 | `ar-clean` | correct MSA: names such as علي, words like ظل / ضل and سورة / صورة, diacritics, tatweel, Arabic-Indic digits, English words inside | 150 sentences, 861 words |
@@ -64,5 +64,8 @@ gets `"reviewed": { "by": "<name>", "on": "YYYY-MM-DD" }`.
 
 Research-licensed sets such as QALB or ZAEBUC are scored from a local path in
 the same JSONL format and are **never committed or used for training**
-(CLAUDE.md, Licence hygiene). A set whose cases all expect no change is scored as
-a clean set; any other as an error set.
+(CLAUDE.md, Licence hygiene). Keep them in `eval/local/`, which git ignores, or
+anywhere outside the repository. The report quotes their tokens, so keep a report
+written with `--json` out of the repository too; the default `eval/report.json`
+is ignored. A set whose cases all expect no change is scored as a clean set; any
+other as an error set. English in a set gets both runs, `careful` and `balanced`.

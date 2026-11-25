@@ -66,7 +66,7 @@
 {"id": "en-errors-066", "lang": "en", "text": "This soup is to hot to eat right now.", "expected": "This soup is too hot to eat right now.", "source": "seed-v1"}
 {"id": "en-errors-067", "lang": "en", "text": "The library is quite in the early morning.", "expected": "The library is quiet in the early morning.", "source": "seed-v1"}
 {"id": "en-errors-068", "lang": "en", "text": "Everyone came accept my brother.", "expected": "Everyone came except my brother.", "source": "seed-v1"}
-{"id": "en-errors-069", "lang": "en", "text": "Can you advise me on which laptop to buy?", "expected": "Can you advice me on which laptop to buy?", "source": "seed-v1"}
+{"id": "en-errors-069", "lang": "en", "text": "Can you give me some advise about laptops?", "expected": "Can you give me some advice about laptops?", "source": "seed-v1"}
 {"id": "en-errors-070", "lang": "en", "text": "Take a deep breathe before you start.", "expected": "Take a deep breath before you start.", "source": "seed-v1"}
 {"id": "en-errors-071", "lang": "en", "text": "We ordered chocolate cake for desert.", "expected": "We ordered chocolate cake for dessert.", "source": "seed-v1"}
 {"id": "en-errors-072", "lang": "en", "text": "He lead the team to victory last season.", "expected": "He led the team to victory last season.", "source": "seed-v1"}
@@ -93,8 +93,8 @@
 {"id": "en-errors-093", "lang": "en", "text": "Their is a small shop around the corner.", "expected": "There is a small shop around the corner.", "source": "seed-v1"}
 {"id": "en-errors-094", "lang": "en", "text": "I would rather walk then take the bus.", "expected": "I would rather walk than take the bus.", "source": "seed-v1"}
 {"id": "en-errors-095", "lang": "en", "text": "Make sure the knot is not too lose.", "expected": "Make sure the knot is not too loose.", "source": "seed-v1"}
-{"id": "en-errors-096", "lang": "en", "text": "The new law will affect change slowly.", "expected": "The new law will effect change slowly.", "source": "seed-v1"}
-{"id": "en-errors-097", "lang": "en", "text": "Turn left at the sight of the old castle.", "expected": "Turn left at the site of the old castle.", "source": "seed-v1"}
+{"id": "en-errors-096", "lang": "en", "text": "The loud music did not effect her sleep.", "expected": "The loud music did not affect her sleep.", "source": "seed-v1"}
+{"id": "en-errors-097", "lang": "en", "text": "The building sight closes at five every day.", "expected": "The building site closes at five every day.", "source": "seed-v1"}
 {"id": "en-errors-098", "lang": "en", "text": "Please right your name in capital letters.", "expected": "Please write your name in capital letters.", "source": "seed-v1"}
 {"id": "en-errors-099", "lang": "en", "text": "The cat licked it's paws after dinner.", "expected": "The cat licked its paws after dinner.", "source": "seed-v1"}
 {"id": "en-errors-100", "lang": "en", "text": "Your going to love this film.", "expected": "You're going to love this film.", "source": "seed-v1"}
@@ -105,7 +105,7 @@
 {"id": "en-errors-105", "lang": "en", "text": "The affect of the medicine was immediate.", "expected": "The effect of the medicine was immediate.", "source": "seed-v1"}
 {"id": "en-errors-106", "lang": "en", "text": "She is quiet sure about her answer.", "expected": "She is quite sure about her answer.", "source": "seed-v1"}
 {"id": "en-errors-107", "lang": "en", "text": "Please except my apology for the delay.", "expected": "Please accept my apology for the delay.", "source": "seed-v1"}
-{"id": "en-errors-108", "lang": "en", "text": "The desert was full of sand and cactus.", "expected": "The dessert was full of sand and cactus.", "source": "seed-v1"}
+{"id": "en-errors-108", "lang": "en", "text": "They crossed the dessert on camels.", "expected": "They crossed the desert on camels.", "source": "seed-v1"}
 {"id": "en-errors-109", "lang": "en", "text": "I past my driving test on the first try.", "expected": "I passed my driving test on the first try.", "source": "seed-v1"}
 {"id": "en-errors-110", "lang": "en", "text": "Its raining again, so take an umbrella.", "expected": "It's raining again, so take an umbrella.", "source": "seed-v1"}
 {"id": "en-errors-111", "lang": "en", "text": "The shop sells stationary and greeting cards.", "expected": "The shop sells stationery and greeting cards.", "source": "seed-v1"}

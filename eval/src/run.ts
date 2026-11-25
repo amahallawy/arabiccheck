@@ -94,7 +94,8 @@ async function main(): Promise<void> {
     const runs: SetRun[] = [];
     for (const { set, cases, external } of sets) {
       runs.push(await score(set, cases, careful, "careful", external));
-      if (set.lang === "en") runs.push(await score(set, cases, balanced, "balanced", external));
+      // A local set may mix languages; any English in it gets the comparison run.
+      if (cases.some((c) => c.lang === "en")) runs.push(await score(set, cases, balanced, "balanced", external));
     }
     console.log(formatReport(runs));
     await writeFile(values.json, `${JSON.stringify(toJson(runs, new Date().toISOString()), null, 2)}\n`);

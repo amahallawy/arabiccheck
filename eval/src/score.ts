@@ -70,6 +70,9 @@ export function outputTokens(text: string, suggestions: readonly Suggestion[]): 
 export function scoreCase(testCase: TestCase, suggestions: readonly Suggestion[]): { counts: Counts; events: TokenEvent[] } {
   const typed = tokens(testCase.text);
   const expected = tokens(testCase.expected);
+  if (typed.length !== expected.length) {
+    throw new Error(`${testCase.id}: text has ${typed.length} tokens but expected has ${expected.length}`);
+  }
   const output = outputTokens(testCase.text, suggestions);
   let errors = 0;
   let changes = 0;

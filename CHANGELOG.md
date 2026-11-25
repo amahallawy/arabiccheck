@@ -15,7 +15,7 @@ when that version ships.
 ArabicCheck: English and Arabic sentences with typical mistakes, and correct
 text to count wrong changes. It reports how many changes were right, how many
 mistakes were caught, and how many correct words were wrongly changed per 1,000.
-First numbers: about 99% of changes are right in both languages, 81% of English
+First numbers: about 99% of changes are right in both languages, 83% of English
 and 77% of Arabic mistakes are caught, and no correct word was changed. The
 Arabic numbers count once a native speaker has reviewed the Arabic sentences.
 Research data such as QALB can be scored from your own copy without ever being
