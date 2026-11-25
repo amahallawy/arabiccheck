@@ -54,6 +54,7 @@ npm run typecheck       # TypeScript, strict
 npm test                # unit tests (npm run test:coverage for coverage)
 npm run build           # build every package
 npm run fetch-models    # download the models (about 18 MB) and check their hashes
+npm run eval            # score the checkers on the test sets (see eval/README.md)
 ```
 
 Model files are not in the repository. `fetch-models` downloads them from the

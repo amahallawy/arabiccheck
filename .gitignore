@@ -17,6 +17,9 @@ apps/playground/public/models/
 apps/playground/public/ort/
 *.partial
 
+# Evaluation output (results go in the PR description)
+eval/report.json
+
 # Python (training/)
 __pycache__/
 *.pyc

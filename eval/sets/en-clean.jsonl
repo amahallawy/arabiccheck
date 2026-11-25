@@ -1,0 +1,150 @@
+{"id": "en-clean-001", "lang": "en", "text": "I got a letter from the bank this morning.", "expected": "I got a letter from the bank this morning.", "source": "seed-v1"}
+{"id": "en-clean-002", "lang": "en", "text": "Their house is bigger than ours, but the garden is smaller.", "expected": "Their house is bigger than ours, but the garden is smaller.", "source": "seed-v1"}
+{"id": "en-clean-003", "lang": "en", "text": "She did not receive the package until Friday.", "expected": "She did not receive the package until Friday.", "source": "seed-v1"}
+{"id": "en-clean-004", "lang": "en", "text": "Please separate the glass bottles from the paper.", "expected": "Please separate the glass bottles from the paper.", "source": "seed-v1"}
+{"id": "en-clean-005", "lang": "en", "text": "We will definitely finish the report before the meeting.", "expected": "We will definitely finish the report before the meeting.", "source": "seed-v1"}
+{"id": "en-clean-006", "lang": "en", "text": "The company changed its name last year.", "expected": "The company changed its name last year.", "source": "seed-v1"}
+{"id": "en-clean-007", "lang": "en", "text": "I think you're right about the timing.", "expected": "I think you're right about the timing.", "source": "seed-v1"}
+{"id": "en-clean-008", "lang": "en", "text": "This soup is too hot to eat right now.", "expected": "This soup is too hot to eat right now.", "source": "seed-v1"}
+{"id": "en-clean-009", "lang": "en", "text": "The library is quiet in the early morning.", "expected": "The library is quiet in the early morning.", "source": "seed-v1"}
+{"id": "en-clean-010", "lang": "en", "text": "Everyone came except my brother.", "expected": "Everyone came except my brother.", "source": "seed-v1"}
+{"id": "en-clean-011", "lang": "en", "text": "Take a deep breath before you start.", "expected": "Take a deep breath before you start.", "source": "seed-v1"}
+{"id": "en-clean-012", "lang": "en", "text": "We ordered chocolate cake for dessert.", "expected": "We ordered chocolate cake for dessert.", "source": "seed-v1"}
+{"id": "en-clean-013", "lang": "en", "text": "He led the team to victory last season.", "expected": "He led the team to victory last season.", "source": "seed-v1"}
+{"id": "en-clean-014", "lang": "en", "text": "We drove past the old factory.", "expected": "We drove past the old factory.", "source": "seed-v1"}
+{"id": "en-clean-015", "lang": "en", "text": "The school principal spoke to the parents.", "expected": "The school principal spoke to the parents.", "source": "seed-v1"}
+{"id": "en-clean-016", "lang": "en", "text": "I do not know whether to laugh or cry.", "expected": "I do not know whether to laugh or cry.", "source": "seed-v1"}
+{"id": "en-clean-017", "lang": "en", "text": "Where did you put the scissors?", "expected": "Where did you put the scissors?", "source": "seed-v1"}
+{"id": "en-clean-018", "lang": "en", "text": "Whose jacket is this on the chair?", "expected": "Whose jacket is this on the chair?", "source": "seed-v1"}
+{"id": "en-clean-019", "lang": "en", "text": "They signed a peace agreement after the war.", "expected": "They signed a peace agreement after the war.", "source": "seed-v1"}
+{"id": "en-clean-020", "lang": "en", "text": "Take a short break every hour.", "expected": "Take a short break every hour.", "source": "seed-v1"}
+{"id": "en-clean-021", "lang": "en", "text": "I need to wash my clothes before the trip.", "expected": "I need to wash my clothes before the trip.", "source": "seed-v1"}
+{"id": "en-clean-022", "lang": "en", "text": "He paid me a nice compliment on my work.", "expected": "He paid me a nice compliment on my work.", "source": "seed-v1"}
+{"id": "en-clean-023", "lang": "en", "text": "She writes in her diary every night.", "expected": "She writes in her diary every night.", "source": "seed-v1"}
+{"id": "en-clean-024", "lang": "en", "text": "The bus fare went up again this year.", "expected": "The bus fare went up again this year.", "source": "seed-v1"}
+{"id": "en-clean-025", "lang": "en", "text": "Come over here and look at this.", "expected": "Come over here and look at this.", "source": "seed-v1"}
+{"id": "en-clean-026", "lang": "en", "text": "I know the answer to that question.", "expected": "I know the answer to that question.", "source": "seed-v1"}
+{"id": "en-clean-027", "lang": "en", "text": "Let us meet at the cafe at noon.", "expected": "Let us meet at the cafe at noon.", "source": "seed-v1"}
+{"id": "en-clean-028", "lang": "en", "text": "I knew he would be late again.", "expected": "I knew he would be late again.", "source": "seed-v1"}
+{"id": "en-clean-029", "lang": "en", "text": "Please turn off the lights when you leave.", "expected": "Please turn off the lights when you leave.", "source": "seed-v1"}
+{"id": "en-clean-030", "lang": "en", "text": "We walked through the park after lunch.", "expected": "We walked through the park after lunch.", "source": "seed-v1"}
+{"id": "en-clean-031", "lang": "en", "text": "He threw the ball over the fence.", "expected": "He threw the ball over the fence.", "source": "seed-v1"}
+{"id": "en-clean-032", "lang": "en", "text": "I feel weak after the long run.", "expected": "I feel weak after the long run.", "source": "seed-v1"}
+{"id": "en-clean-033", "lang": "en", "text": "There is a small shop around the corner.", "expected": "There is a small shop around the corner.", "source": "seed-v1"}
+{"id": "en-clean-034", "lang": "en", "text": "I would rather walk than take the bus.", "expected": "I would rather walk than take the bus.", "source": "seed-v1"}
+{"id": "en-clean-035", "lang": "en", "text": "Make sure the knot is not too loose.", "expected": "Make sure the knot is not too loose.", "source": "seed-v1"}
+{"id": "en-clean-036", "lang": "en", "text": "The new law will take effect next month.", "expected": "The new law will take effect next month.", "source": "seed-v1"}
+{"id": "en-clean-037", "lang": "en", "text": "Weather like this can affect the harvest.", "expected": "Weather like this can affect the harvest.", "source": "seed-v1"}
+{"id": "en-clean-038", "lang": "en", "text": "Please write your name in capital letters.", "expected": "Please write your name in capital letters.", "source": "seed-v1"}
+{"id": "en-clean-039", "lang": "en", "text": "I have already eaten, thank you.", "expected": "I have already eaten, thank you.", "source": "seed-v1"}
+{"id": "en-clean-040", "lang": "en", "text": "The cat licked its paws after dinner.", "expected": "The cat licked its paws after dinner.", "source": "seed-v1"}
+{"id": "en-clean-041", "lang": "en", "text": "She bought two tickets for the evening show.", "expected": "She bought two tickets for the evening show.", "source": "seed-v1"}
+{"id": "en-clean-042", "lang": "en", "text": "We were supposed to meet at eight.", "expected": "We were supposed to meet at eight.", "source": "seed-v1"}
+{"id": "en-clean-043", "lang": "en", "text": "The meeting was cancelled because of the storm.", "expected": "The meeting was cancelled because of the storm.", "source": "seed-v1"}
+{"id": "en-clean-044", "lang": "en", "text": "I am used to waking up early now.", "expected": "I am used to waking up early now.", "source": "seed-v1"}
+{"id": "en-clean-045", "lang": "en", "text": "The effect of the medicine was immediate.", "expected": "The effect of the medicine was immediate.", "source": "seed-v1"}
+{"id": "en-clean-046", "lang": "en", "text": "She is quite sure about her answer.", "expected": "She is quite sure about her answer.", "source": "seed-v1"}
+{"id": "en-clean-047", "lang": "en", "text": "Please accept my apology for the delay.", "expected": "Please accept my apology for the delay.", "source": "seed-v1"}
+{"id": "en-clean-048", "lang": "en", "text": "The desert was full of sand and cactus.", "expected": "The desert was full of sand and cactus.", "source": "seed-v1"}
+{"id": "en-clean-049", "lang": "en", "text": "I passed my driving test on the first try.", "expected": "I passed my driving test on the first try.", "source": "seed-v1"}
+{"id": "en-clean-050", "lang": "en", "text": "It's raining again, so take an umbrella.", "expected": "It's raining again, so take an umbrella.", "source": "seed-v1"}
+{"id": "en-clean-051", "lang": "en", "text": "The shop sells stationery and greeting cards.", "expected": "The shop sells stationery and greeting cards.", "source": "seed-v1"}
+{"id": "en-clean-052", "lang": "en", "text": "My niece starts school in September.", "expected": "My niece starts school in September.", "source": "seed-v1"}
+{"id": "en-clean-053", "lang": "en", "text": "Our neighbors have a new puppy.", "expected": "Our neighbors have a new puppy.", "source": "seed-v1"}
+{"id": "en-clean-054", "lang": "en", "text": "I bought fresh vegetables at the market.", "expected": "I bought fresh vegetables at the market.", "source": "seed-v1"}
+{"id": "en-clean-055", "lang": "en", "text": "The weather forecast says it will snow.", "expected": "The weather forecast says it will snow.", "source": "seed-v1"}
+{"id": "en-clean-056", "lang": "en", "text": "I always drink tea in the morning.", "expected": "I always drink tea in the morning.", "source": "seed-v1"}
+{"id": "en-clean-057", "lang": "en", "text": "We visited the museum on Saturday.", "expected": "We visited the museum on Saturday.", "source": "seed-v1"}
+{"id": "en-clean-058", "lang": "en", "text": "The restaurant near the station closed down.", "expected": "The restaurant near the station closed down.", "source": "seed-v1"}
+{"id": "en-clean-059", "lang": "en", "text": "The committee will vote on Monday.", "expected": "The committee will vote on Monday.", "source": "seed-v1"}
+{"id": "en-clean-060", "lang": "en", "text": "This is the fourth time he has called today.", "expected": "This is the fourth time he has called today.", "source": "seed-v1"}
+{"id": "en-clean-061", "lang": "en", "text": "He gave a brief answer and then left the room.", "expected": "He gave a brief answer and then left the room.", "source": "seed-v1"}
+{"id": "en-clean-062", "lang": "en", "text": "The train leaves from platform four at 9:15.", "expected": "The train leaves from platform four at 9:15.", "source": "seed-v1"}
+{"id": "en-clean-063", "lang": "en", "text": "My sister moved to Toronto in 2019.", "expected": "My sister moved to Toronto in 2019.", "source": "seed-v1"}
+{"id": "en-clean-064", "lang": "en", "text": "The recipe needs two cups of flour and a pinch of salt.", "expected": "The recipe needs two cups of flour and a pinch of salt.", "source": "seed-v1"}
+{"id": "en-clean-065", "lang": "en", "text": "Dr. Patel will see you in ten minutes.", "expected": "Dr. Patel will see you in ten minutes.", "source": "seed-v1"}
+{"id": "en-clean-066", "lang": "en", "text": "The museum is open from Tuesday to Sunday.", "expected": "The museum is open from Tuesday to Sunday.", "source": "seed-v1"}
+{"id": "en-clean-067", "lang": "en", "text": "He plays the violin in a small orchestra.", "expected": "He plays the violin in a small orchestra.", "source": "seed-v1"}
+{"id": "en-clean-068", "lang": "en", "text": "The river flooded the lower fields last spring.", "expected": "The river flooded the lower fields last spring.", "source": "seed-v1"}
+{"id": "en-clean-069", "lang": "en", "text": "We painted the kitchen a pale shade of green.", "expected": "We painted the kitchen a pale shade of green.", "source": "seed-v1"}
+{"id": "en-clean-070", "lang": "en", "text": "My laptop battery lasts about six hours.", "expected": "My laptop battery lasts about six hours.", "source": "seed-v1"}
+{"id": "en-clean-071", "lang": "en", "text": "The children built a sandcastle near the water.", "expected": "The children built a sandcastle near the water.", "source": "seed-v1"}
+{"id": "en-clean-072", "lang": "en", "text": "She ran the marathon in under four hours.", "expected": "She ran the marathon in under four hours.", "source": "seed-v1"}
+{"id": "en-clean-073", "lang": "en", "text": "The bakery on Elm Street sells fresh bread every morning.", "expected": "The bakery on Elm Street sells fresh bread every morning.", "source": "seed-v1"}
+{"id": "en-clean-074", "lang": "en", "text": "I prefer reading on paper rather than on a screen.", "expected": "I prefer reading on paper rather than on a screen.", "source": "seed-v1"}
+{"id": "en-clean-075", "lang": "en", "text": "The old bridge was closed for repairs.", "expected": "The old bridge was closed for repairs.", "source": "seed-v1"}
+{"id": "en-clean-076", "lang": "en", "text": "Our flight was delayed by two hours.", "expected": "Our flight was delayed by two hours.", "source": "seed-v1"}
+{"id": "en-clean-077", "lang": "en", "text": "He keeps his tools in a wooden box in the garage.", "expected": "He keeps his tools in a wooden box in the garage.", "source": "seed-v1"}
+{"id": "en-clean-078", "lang": "en", "text": "The teacher asked us to read the first chapter.", "expected": "The teacher asked us to read the first chapter.", "source": "seed-v1"}
+{"id": "en-clean-079", "lang": "en", "text": "I left my umbrella at the office again.", "expected": "I left my umbrella at the office again.", "source": "seed-v1"}
+{"id": "en-clean-080", "lang": "en", "text": "The garden is full of roses in June.", "expected": "The garden is full of roses in June.", "source": "seed-v1"}
+{"id": "en-clean-081", "lang": "en", "text": "They adopted a cat from the shelter.", "expected": "They adopted a cat from the shelter.", "source": "seed-v1"}
+{"id": "en-clean-082", "lang": "en", "text": "The concert starts at eight, so we should leave soon.", "expected": "The concert starts at eight, so we should leave soon.", "source": "seed-v1"}
+{"id": "en-clean-083", "lang": "en", "text": "Please send me the file by email.", "expected": "Please send me the file by email.", "source": "seed-v1"}
+{"id": "en-clean-084", "lang": "en", "text": "The road through the mountains is narrow and steep.", "expected": "The road through the mountains is narrow and steep.", "source": "seed-v1"}
+{"id": "en-clean-085", "lang": "en", "text": "My grandmother tells the best stories.", "expected": "My grandmother tells the best stories.", "source": "seed-v1"}
+{"id": "en-clean-086", "lang": "en", "text": "We need more chairs for the guests.", "expected": "We need more chairs for the guests.", "source": "seed-v1"}
+{"id": "en-clean-087", "lang": "en", "text": "The shop around the corner sells newspapers and coffee.", "expected": "The shop around the corner sells newspapers and coffee.", "source": "seed-v1"}
+{"id": "en-clean-088", "lang": "en", "text": "He fixed the bicycle with a spare chain.", "expected": "He fixed the bicycle with a spare chain.", "source": "seed-v1"}
+{"id": "en-clean-089", "lang": "en", "text": "The sky turned orange as the sun went down.", "expected": "The sky turned orange as the sun went down.", "source": "seed-v1"}
+{"id": "en-clean-090", "lang": "en", "text": "I am learning to cook rice the way my mother does.", "expected": "I am learning to cook rice the way my mother does.", "source": "seed-v1"}
+{"id": "en-clean-091", "lang": "en", "text": "The meeting room is on the third floor.", "expected": "The meeting room is on the third floor.", "source": "seed-v1"}
+{"id": "en-clean-092", "lang": "en", "text": "Our team won the match by two goals.", "expected": "Our team won the match by two goals.", "source": "seed-v1"}
+{"id": "en-clean-093", "lang": "en", "text": "She keeps a list of books she wants to read.", "expected": "She keeps a list of books she wants to read.", "source": "seed-v1"}
+{"id": "en-clean-094", "lang": "en", "text": "The park has a lake, a playground and a small cafe.", "expected": "The park has a lake, a playground and a small cafe.", "source": "seed-v1"}
+{"id": "en-clean-095", "lang": "en", "text": "I usually walk to work when the weather is good.", "expected": "I usually walk to work when the weather is good.", "source": "seed-v1"}
+{"id": "en-clean-096", "lang": "en", "text": "The printer is out of paper again.", "expected": "The printer is out of paper again.", "source": "seed-v1"}
+{"id": "en-clean-097", "lang": "en", "text": "He speaks Arabic, English and a little French.", "expected": "He speaks Arabic, English and a little French.", "source": "seed-v1"}
+{"id": "en-clean-098", "lang": "en", "text": "The new bus line goes straight to the airport.", "expected": "The new bus line goes straight to the airport.", "source": "seed-v1"}
+{"id": "en-clean-099", "lang": "en", "text": "They planted olive trees along the road.", "expected": "They planted olive trees along the road.", "source": "seed-v1"}
+{"id": "en-clean-100", "lang": "en", "text": "I lost my keys and found them in my coat pocket.", "expected": "I lost my keys and found them in my coat pocket.", "source": "seed-v1"}
+{"id": "en-clean-101", "lang": "en", "text": "The baby slept through the whole journey.", "expected": "The baby slept through the whole journey.", "source": "seed-v1"}
+{"id": "en-clean-102", "lang": "en", "text": "We watched the news before dinner.", "expected": "We watched the news before dinner.", "source": "seed-v1"}
+{"id": "en-clean-103", "lang": "en", "text": "Their son is studying engineering in Berlin.", "expected": "Their son is studying engineering in Berlin.", "source": "seed-v1"}
+{"id": "en-clean-104", "lang": "en", "text": "The store closes early on public holidays.", "expected": "The store closes early on public holidays.", "source": "seed-v1"}
+{"id": "en-clean-105", "lang": "en", "text": "She drew a map of the village for the visitors.", "expected": "She drew a map of the village for the visitors.", "source": "seed-v1"}
+{"id": "en-clean-106", "lang": "en", "text": "My phone needs a new screen.", "expected": "My phone needs a new screen.", "source": "seed-v1"}
+{"id": "en-clean-107", "lang": "en", "text": "The hospital opened a new children's ward.", "expected": "The hospital opened a new children's ward.", "source": "seed-v1"}
+{"id": "en-clean-108", "lang": "en", "text": "Please wipe your feet before you come in.", "expected": "Please wipe your feet before you come in.", "source": "seed-v1"}
+{"id": "en-clean-109", "lang": "en", "text": "The library lends books, films and music.", "expected": "The library lends books, films and music.", "source": "seed-v1"}
+{"id": "en-clean-110", "lang": "en", "text": "He was born in a small town by the sea.", "expected": "He was born in a small town by the sea.", "source": "seed-v1"}
+{"id": "en-clean-111", "lang": "en", "text": "We will discuss the budget at the next meeting.", "expected": "We will discuss the budget at the next meeting.", "source": "seed-v1"}
+{"id": "en-clean-112", "lang": "en", "text": "I found an old photo of my parents in a drawer.", "expected": "I found an old photo of my parents in a drawer.", "source": "seed-v1"}
+{"id": "en-clean-113", "lang": "en", "text": "The hotel room had a view of the harbor.", "expected": "The hotel room had a view of the harbor.", "source": "seed-v1"}
+{"id": "en-clean-114", "lang": "en", "text": "The first snow fell in late November.", "expected": "The first snow fell in late November.", "source": "seed-v1"}
+{"id": "en-clean-115", "lang": "en", "text": "Our neighbor grows tomatoes on her balcony.", "expected": "Our neighbor grows tomatoes on her balcony.", "source": "seed-v1"}
+{"id": "en-clean-116", "lang": "en", "text": "The software update fixed the login problem.", "expected": "The software update fixed the login problem.", "source": "seed-v1"}
+{"id": "en-clean-117", "lang": "en", "text": "He wrote a long letter to his old teacher.", "expected": "He wrote a long letter to his old teacher.", "source": "seed-v1"}
+{"id": "en-clean-118", "lang": "en", "text": "The market is busiest on Saturday mornings.", "expected": "The market is busiest on Saturday mornings.", "source": "seed-v1"}
+{"id": "en-clean-119", "lang": "en", "text": "They spent the weekend camping in the forest.", "expected": "They spent the weekend camping in the forest.", "source": "seed-v1"}
+{"id": "en-clean-120", "lang": "en", "text": "I need to renew my passport before the trip.", "expected": "I need to renew my passport before the trip.", "source": "seed-v1"}
+{"id": "en-clean-121", "lang": "en", "text": "The soup tastes better the next day.", "expected": "The soup tastes better the next day.", "source": "seed-v1"}
+{"id": "en-clean-122", "lang": "en", "text": "The students presented their project to the class.", "expected": "The students presented their project to the class.", "source": "seed-v1"}
+{"id": "en-clean-123", "lang": "en", "text": "She knits scarves for her friends every winter.", "expected": "She knits scarves for her friends every winter.", "source": "seed-v1"}
+{"id": "en-clean-124", "lang": "en", "text": "The farmer sold us a basket of fresh eggs.", "expected": "The farmer sold us a basket of fresh eggs.", "source": "seed-v1"}
+{"id": "en-clean-125", "lang": "en", "text": "We took the ferry across the bay.", "expected": "We took the ferry across the bay.", "source": "seed-v1"}
+{"id": "en-clean-126", "lang": "en", "text": "My uncle repairs old clocks as a hobby.", "expected": "My uncle repairs old clocks as a hobby.", "source": "seed-v1"}
+{"id": "en-clean-127", "lang": "en", "text": "The museum guide explained the history of the castle.", "expected": "The museum guide explained the history of the castle.", "source": "seed-v1"}
+{"id": "en-clean-128", "lang": "en", "text": "I keep a spare charger in my bag.", "expected": "I keep a spare charger in my bag.", "source": "seed-v1"}
+{"id": "en-clean-129", "lang": "en", "text": "The city council approved the new park.", "expected": "The city council approved the new park.", "source": "seed-v1"}
+{"id": "en-clean-130", "lang": "en", "text": "He apologized for being late and sat down quietly.", "expected": "He apologized for being late and sat down quietly.", "source": "seed-v1"}
+{"id": "en-clean-131", "lang": "en", "text": "The film was shorter than I expected.", "expected": "The film was shorter than I expected.", "source": "seed-v1"}
+{"id": "en-clean-132", "lang": "en", "text": "Her advice helped me choose the right course.", "expected": "Her advice helped me choose the right course.", "source": "seed-v1"}
+{"id": "en-clean-133", "lang": "en", "text": "The doctor advised him to rest for a week.", "expected": "The doctor advised him to rest for a week.", "source": "seed-v1"}
+{"id": "en-clean-134", "lang": "en", "text": "I can't find the remote control anywhere.", "expected": "I can't find the remote control anywhere.", "source": "seed-v1"}
+{"id": "en-clean-135", "lang": "en", "text": "The tea was too sweet for my taste.", "expected": "The tea was too sweet for my taste.", "source": "seed-v1"}
+{"id": "en-clean-136", "lang": "en", "text": "Your order will arrive within three days.", "expected": "Your order will arrive within three days.", "source": "seed-v1"}
+{"id": "en-clean-137", "lang": "en", "text": "They're planning a trip to the mountains in spring.", "expected": "They're planning a trip to the mountains in spring.", "source": "seed-v1"}
+{"id": "en-clean-138", "lang": "en", "text": "Its color fades a little after every wash.", "expected": "Its color fades a little after every wash.", "source": "seed-v1"}
+{"id": "en-clean-139", "lang": "en", "text": "The lead singer thanked the audience at the end.", "expected": "The lead singer thanked the audience at the end.", "source": "seed-v1"}
+{"id": "en-clean-140", "lang": "en", "text": "Lead pipes were replaced in the old building.", "expected": "Lead pipes were replaced in the old building.", "source": "seed-v1"}
+{"id": "en-clean-141", "lang": "en", "text": "The principle of the idea is simple.", "expected": "The principle of the idea is simple.", "source": "seed-v1"}
+{"id": "en-clean-142", "lang": "en", "text": "Then we went home and slept for ten hours.", "expected": "Then we went home and slept for ten hours.", "source": "seed-v1"}
+{"id": "en-clean-143", "lang": "en", "text": "She was quite tired after the long flight.", "expected": "She was quite tired after the long flight.", "source": "seed-v1"}
+{"id": "en-clean-144", "lang": "en", "text": "Their opinions differ, but they respect each other.", "expected": "Their opinions differ, but they respect each other.", "source": "seed-v1"}
+{"id": "en-clean-145", "lang": "en", "text": "The train was cancelled, so we waited for the next one and arrived later than planned.", "expected": "The train was cancelled, so we waited for the next one and arrived later than planned.", "source": "seed-v1"}
+{"id": "en-clean-146", "lang": "en", "text": "My grandmother keeps all her old photos in a separate box under the bed.", "expected": "My grandmother keeps all her old photos in a separate box under the bed.", "source": "seed-v1"}
+{"id": "en-clean-147", "lang": "en", "text": "After the storm, the roof of the old barn was lying in the field.", "expected": "After the storm, the roof of the old barn was lying in the field.", "source": "seed-v1"}
+{"id": "en-clean-148", "lang": "en", "text": "I have known him since we were at primary school together.", "expected": "I have known him since we were at primary school together.", "source": "seed-v1"}
+{"id": "en-clean-149", "lang": "en", "text": "We sat on the beach and watched the ships go by.", "expected": "We sat on the beach and watched the ships go by.", "source": "seed-v1"}
+{"id": "en-clean-150", "lang": "en", "text": "The report was thorough and useful, but it arrived a week late.", "expected": "The report was thorough and useful, but it arrived a week late.", "source": "seed-v1"}

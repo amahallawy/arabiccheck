@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import type { Fix, LoadOptions, Tinyfix } from "tinyfix";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { startModelServer, type ModelServer } from "../../../test/support/model-server.js";
+import { startModelServer, type ModelServer } from "../../../scripts/lib/model-server.js";
 import { CHECKER_ID, loadEnglishChecker, toSuggestions, type EnglishChecker } from "../src/index.js";
 
 const fix = (overrides: Partial<Fix>): Fix => ({

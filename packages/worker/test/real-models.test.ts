@@ -1,7 +1,7 @@
 // The whole path with the real models: page-side client → MessageChannel → serve() → both checkers.
 import { MessageChannel, type MessagePort } from "node:worker_threads";
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
-import { startModelServer, type ModelServer } from "../../../test/support/model-server.js";
+import { startModelServer, type ModelServer } from "../../../scripts/lib/model-server.js";
 import { createCheckerClient, type CheckerClient } from "../src/client.js";
 import type { MessageTarget, StatusMessage } from "../src/protocol.js";
 import { serve } from "../src/serve.js";

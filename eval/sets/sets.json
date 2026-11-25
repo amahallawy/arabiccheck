@@ -1,0 +1,34 @@
+[
+  {
+    "name": "en-errors",
+    "file": "en-errors.jsonl",
+    "lang": "en",
+    "kind": "errors",
+    "source": "Written for ArabicCheck by Claude (seed-v1): misspellings and real-word errors, one or two per sentence",
+    "licence": "MIT"
+  },
+  {
+    "name": "en-clean",
+    "file": "en-clean.jsonl",
+    "lang": "en",
+    "kind": "clean",
+    "source": "Written for ArabicCheck by Claude (seed-v1): correct sentences, many using commonly confused words correctly",
+    "licence": "MIT"
+  },
+  {
+    "name": "ar-errors",
+    "file": "ar-errors.jsonl",
+    "lang": "ar",
+    "kind": "errors",
+    "source": "Written for ArabicCheck by Claude (seed-v1): hamza, taa marbuta, alef maqsura, sound-alike letters and typos; some with English words inside",
+    "licence": "MIT"
+  },
+  {
+    "name": "ar-clean",
+    "file": "ar-clean.jsonl",
+    "lang": "ar",
+    "kind": "clean",
+    "source": "Written for ArabicCheck by Claude (seed-v1): correct MSA, including names, diacritics, tatweel, Arabic-Indic digits and English words inside",
+    "licence": "MIT"
+  }
+]
