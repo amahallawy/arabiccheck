@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "customConditions": [],
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": [
+      "es2022",
+      "webworker"
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}

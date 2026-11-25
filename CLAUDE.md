@@ -78,13 +78,19 @@ This project reports to Company through `.company/status.yaml` (goal, due, progr
 - No non-commercial (NC) or research-only weights or data in anything that ships.
 - Research-only data (for example QALB) may be used for evaluation only, never
   for training released weights, unless its licence is confirmed to allow it.
+- **One exception (owner decision, Company ADR-0005):** the third-party
+  tinyfix-ar model may ship although its author trained it partly on
+  QALB-2014 corrected text. It covers that model only; ArabicCheck's own
+  weights still never train on QALB, and any other research-derived weights
+  need their own owner decision.
 - Each released model gets a data card listing its training sources.
 
 ### Layout (planned; each piece lands with its own issue and AgDR)
 
 ```
-packages/core/        pipeline, Checker interface, merging, offset mapping
-packages/checkers/    one package per checker (spell-en, spell-ar, tinyfix, tinyfix-ar, ...)
+packages/core/        Suggestion and Checker types, language runs, masking, merging, applying
+packages/checker-*/   one package per checker (checker-en over tinyfix, checker-ar over tinyfix-ar, ...)
+packages/worker/      worker protocol, handler, page-side client, worker entry
 apps/playground/      M0 test page
 apps/extension/       M1 browser extension (Manifest V3)
 eval/                 evaluation runner and test sets
