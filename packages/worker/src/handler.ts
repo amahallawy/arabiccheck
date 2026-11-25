@@ -84,14 +84,21 @@ export function createHandler(
     }
 
     if (request.version < latest) return; // a newer request arrived while this one ran
+    let suggestions: readonly Suggestion[] = [];
+    try {
+      suggestions = merge(request.text, found, new Set(request.ignored ?? []));
+    } catch (error) {
+      // Still answer, so the page's check doesn't wait for a reply that never comes.
+      for (const lang of LANGS) errors.push({ lang, message: `merging suggestions failed: ${messageOf(error)}` });
+    }
     const result: ResultMessage = {
       type: "result",
       version: request.version,
-      suggestions: merge(request.text, found, new Set(request.ignored ?? [])),
+      suggestions,
       timings: { totalMs: now() - started, byLang },
       errors,
     };
-    post(result);
+    post(result); // if posting itself fails, nothing can be sent; serve() logs it
   }
 
   return {

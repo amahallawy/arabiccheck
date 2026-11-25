@@ -125,6 +125,20 @@ describe("createHandler", () => {
     expect(results()[0]?.suggestions).toHaveLength(1);
   });
 
+  it("still answers, with an error, when merging the suggestions fails", async () => {
+    const corrupt: Checker = {
+      id: "corrupt",
+      lang: "en",
+      check: async () => [null as unknown as Suggestion], // not a suggestion: merge() throws on it
+    };
+    const { handler, results } = setup({ en: async () => corrupt });
+    await handler.handle(INIT);
+    await handler.handle({ type: "check", version: 1, text: "form" });
+    expect(results()[0]).toMatchObject({ version: 1, suggestions: [] });
+    expect(results()[0]?.errors.map((e) => e.lang)).toEqual(["ar", "en"]);
+    expect(results()[0]?.errors[0]?.message).toMatch(/^merging suggestions failed: /);
+  });
+
   it("keeps answering after a check fails unexpectedly", async () => {
     const posted: FromWorker[] = [];
     let failNext = true;

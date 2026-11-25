@@ -87,14 +87,30 @@ describe("createCheckerClient", () => {
       suggestions: [],
       timings: { totalMs: 0, byLang: {} },
       errors: [
-        { lang: "ar", message: "the checker worker stopped: Failed to fetch worker script" },
-        { lang: "en", message: "the checker worker stopped: Failed to fetch worker script" },
+        { lang: "ar", message: "the checker worker could not start: Failed to fetch worker script" },
+        { lang: "en", message: "the checker worker could not start: Failed to fetch worker script" },
       ],
     };
     expect(await waiting).toEqual(expected);
     expect(await client.check("later")).toEqual(expected);
     expect(statuses).toEqual(["load-error:ar", "load-error:en"]);
     expect(worker.sent.filter((m) => (m as { type: string }).type === "check")).toHaveLength(1);
+  });
+
+  it("treats an error after the worker has answered as passing: it fails only the waiting check", async () => {
+    const worker = fakeWorker();
+    const client = createCheckerClient(worker.target, MODELS);
+    const statuses: string[] = [];
+    client.onStatus((status) => statuses.push(`${status.type}:${status.lang}`));
+    worker.reply({ type: "ready", lang: "en", loadMs: 5 });
+    const waiting = client.check("form");
+    worker.crash(""); // an uncaught exception with no message
+
+    expect((await waiting)?.errors[0]?.message).toBe("the checker worker hit an error: unknown error");
+    expect(statuses).toEqual(["ready:en"]); // no contradictory load-errors
+    const next = client.check("form"); // the worker is still used
+    worker.reply(result(2));
+    expect(await next).toMatchObject({ errors: [] });
   });
 
   it("answers the waiting check with an error when its reply can't be read", async () => {

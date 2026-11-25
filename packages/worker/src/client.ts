@@ -40,6 +40,7 @@ const failedResult = (message: string): CheckResult => ({
 export function createCheckerClient(target: MessageTarget, init: Omit<InitMessage, "type">): CheckerClient {
   let version = 0;
   let failure: string | undefined;
+  let answered = false; // has the worker ever sent a protocol message?
   const pending = new Map<number, (result: CheckResult | undefined) => void>();
   const statuses: StatusMessage[] = [];
   const listeners = new Set<(status: StatusMessage) => void>();
@@ -59,6 +60,7 @@ export function createCheckerClient(target: MessageTarget, init: Omit<InitMessag
   target.addEventListener("message", (event) => {
     const message = event.data;
     if (!isFromWorker(message)) return;
+    answered = true;
     if (message.type === "result") {
       const resolve = pending.get(message.version);
       if (resolve === undefined) return; // superseded, or never asked for
@@ -69,10 +71,17 @@ export function createCheckerClient(target: MessageTarget, init: Omit<InitMessag
     report(message);
   });
 
-  // The worker's script failed to load or crashed: nothing will answer again.
   target.addEventListener("error", (event) => {
     if (failure !== undefined) return;
-    failure = `the checker worker stopped: ${String(event.message ?? "unknown error")}`;
+    const reason = String(event.message || "unknown error");
+    if (answered) {
+      // An uncaught exception inside a running worker: the worker carries on, but the
+      // checks waiting now may never be answered.
+      answerPending(failedResult(`the checker worker hit an error: ${reason}`));
+      return;
+    }
+    // The worker never answered, so its script failed to load: nothing will answer.
+    failure = `the checker worker could not start: ${reason}`;
     for (const lang of LANGS) {
       const status: LoadErrorMessage = { type: "load-error", lang, message: failure };
       report(status);
