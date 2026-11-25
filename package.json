@@ -21,7 +21,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present && tsc -p scripts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "build": "npm run build --workspaces --if-present"
+    "build": "npm run build -w @arabiccheck/core && npm run build -w @arabiccheck/checker-en -w @arabiccheck/checker-ar && npm run build -w @arabiccheck/worker && npm run build -w @arabiccheck/playground"
   },
   "devDependencies": {
     "@types/node": "24.19.2",

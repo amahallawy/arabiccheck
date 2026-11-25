@@ -3,7 +3,8 @@
 **Spec**: [`docs/specs/m0-playground.md`](../specs/m0-playground.md) · **Parent issue**: #3
 **Status**: Approved (PR #4, 2026-11-24)
 **Decisions**: AgDR-0001 (repo tooling), AgDR-0002 (checker engines),
-AgDR-0003 (model delivery), AgDR-0004 (evaluation)
+AgDR-0003 (model delivery), AgDR-0004 (evaluation), AgDR-0005 (scripts and
+runtime delivery), AgDR-0006 (adapters, worker protocol, source resolution)
 
 ## Shape
 
@@ -14,6 +15,7 @@ arabiccheck/
     core/                   types, language runs, masking, merging — no dependencies
     checker-en/             adapter over tinyfix 0.1.1 (AgDR-0002)
     checker-ar/             adapter over tinyfix-ar 1.0.0 (AgDR-0002)
+    worker/                 worker protocol, handler, page-side client, worker entry (AgDR-0006)
   apps/playground/          Vite + plain TypeScript page, one Web Worker, a service worker
   models.lock.json          pinned model files: URL, size, SHA-256 (AgDR-0003)
   scripts/fetch-models.ts   downloads and verifies the locked files (AgDR-0005)

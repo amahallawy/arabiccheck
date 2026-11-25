@@ -9,6 +9,18 @@ while writing, and names the issue that has the detail. Versions follow
 Merged but not yet released. Each entry moves into the next version's section
 when that version ships.
 
+### Both checkers work, off the main thread
+
+Still no page to type into (that's next), but the checking itself works. Mixed
+Arabic and English text is split so each checker sees only its own language:
+`ذهبت الى المدرسه في الرياظ` gets `إلى`, `المدرسة` and `الرياض`, each labelled with
+the kind of mistake (hamza, taa marbuta, a sound-alike letter), and `a letter
+form the bank` gets `from`. English runs in its careful mode, which changes
+fewer correct words. Both checkers run in a background worker, so typing will
+never wait on them; an answer for text you have since changed is thrown away,
+and if one language's model fails to load, the other keeps working and you are
+told which file failed. (#7)
+
 ### The checking models download once, checked, from pinned sources
 
 Still nothing to try in a browser. `npm run fetch-models` downloads the English

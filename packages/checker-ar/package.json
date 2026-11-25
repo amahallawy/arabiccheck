@@ -1,0 +1,27 @@
+{
+  "name": "@arabiccheck/checker-ar",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Arabic real-word and spelling checker for ArabicCheck: an adapter over tinyfix-ar 1.0.0.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "@arabiccheck/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@arabiccheck/core": "0.0.0",
+    "tinyfix-ar": "1.0.0"
+  }
+}

@@ -27,6 +27,13 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # The real-model tests need the models (AgDR-0006). The cache is keyed by the
+      # lock, and fetch-models re-checks every cached file's hash either way.
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: apps/playground/public/models
+          key: models-${{ hashFiles('models.lock.json') }}
+      - run: npm run fetch-models
       - run: npm run typecheck
       - run: npm run test:coverage
       - run: npm run build
