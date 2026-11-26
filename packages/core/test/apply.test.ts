@@ -96,4 +96,14 @@ describe("applyAll", () => {
   it("returns the text unchanged with no suggestions", () => {
     expect(applyAll("نص", [])).toBe("نص");
   });
+
+  it("uses UTF-16 offsets around emoji, and a replacement may contain one", () => {
+    const text = "😀 recieve 😀 teh";
+    expect(applyAll(text, [at(text, "recieve", "receive 👍"), at(text, "teh", "the")])).toBe("😀 receive 👍 😀 the");
+  });
+
+  it("skips a suggestion that splits a surrogate pair", () => {
+    const text = "😀 hi";
+    expect(applyAll(text, [suggestion(1, 2, text.slice(1, 2), "x"), at(text, "hi", "ho")])).toBe("😀 ho");
+  });
 });

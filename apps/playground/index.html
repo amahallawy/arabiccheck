@@ -31,12 +31,13 @@
           <h2 id="checked-label">Checked</h2>
           <p id="busy" class="busy" hidden>Checking…</p>
         </div>
-        <div id="marked" class="marked" aria-label="Your text with suggestions marked"></div>
+        <div id="marked" class="marked" role="region" aria-label="Your text with suggestions marked"></div>
 
         <div class="pane-head">
-          <h2 id="list-label">Suggestions <span id="count" class="count" aria-live="polite">0</span></h2>
+          <h2><span id="list-label">Suggestions</span> <span id="count" class="count" aria-hidden="true">0</span></h2>
           <button id="accept-all" type="button" disabled>Accept all</button>
         </div>
+        <p id="announce" class="visually-hidden" aria-live="polite"></p>
         <ul id="list" class="list" aria-labelledby="list-label"></ul>
         <p id="empty" class="empty">No suggestions.</p>
       </section>

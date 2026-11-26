@@ -9,6 +9,9 @@ const DEFAULTS = ["module", "browser", "development|production"];
 const RUNTIME = "onnxruntime-web-use-extern-wasm";
 
 export default defineConfig(({ command }) => ({
+  // Relative URLs, so the built page also works from a sub-path; the page finds
+  // models/ and ort/ from document.baseURI.
+  base: "./",
   resolve: { conditions: command === "serve" ? ["@arabiccheck/source", RUNTIME, ...DEFAULTS] : [RUNTIME, ...DEFAULTS] },
   // The checkers run in one module worker (src/checker.worker.ts).
   worker: { format: "es" },

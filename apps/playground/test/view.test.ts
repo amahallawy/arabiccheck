@@ -53,6 +53,15 @@ describe("paragraphs", () => {
     ]);
   });
 
+  it("counts offsets in UTF-16 code units, so a word after an emoji is marked exactly", () => {
+    const text = "😀 recieve\n𝒜 teh";
+    const list = [at(text, "recieve", "receive", { lang: "en" }), at(text, "teh", "the", { lang: "en" })];
+    expect(paragraphs(text, list)).toEqual([
+      { start: 0, pieces: [{ text: "😀 " }, { text: "recieve", mark: 0 }] },
+      { start: 11, pieces: [{ text: "𝒜 " }, { text: "teh", mark: 1 }] },
+    ]);
+  });
+
   it("returns one empty paragraph for empty text", () => {
     expect(paragraphs("", [])).toEqual([{ start: 0, pieces: [] }]);
   });
@@ -83,10 +92,27 @@ describe("after accepting", () => {
     expect(moveOffset(5, [recieve])).toBe(2 + "received".length);
   });
 
+  it.each([
+    ["at the start of a replaced word: stays", 2, [recieve], 2],
+    ["at the end of a replaced word: after the replacement", 9, [recieve], 10],
+    ["between two replacements: moved by the first only", 10, [recieve, teh], 11],
+    ["at the end of the second: moved by both", 13, [recieve, teh], 12],
+    ["inside the second, after the first: end of the second replacement", 11, [recieve, teh], 12],
+  ] as const)("moves an offset %s", (_name, offset, applied, expected) => {
+    expect(moveOffset(offset, applied)).toBe(expected);
+  });
+
   it("shifts the suggestions left and drops any that overlapped what was applied", () => {
     const overlapping = at(text, "eve", "x", { lang: "en" });
     expect(shiftAfter([teh, overlapping], [recieve])).toEqual([{ ...teh, start: 11, end: 14 }]);
     expect(shiftAfter([recieve], [teh])).toEqual([recieve]);
+  });
+
+  it("keeps a suggestion that touches an applied one without overlapping it", () => {
+    const joined = "ab";
+    const a = at(joined, "a", "xyz");
+    const b = at(joined, "b", "c");
+    expect(shiftAfter([b], [a])).toEqual([{ ...b, start: 3, end: 4 }]);
   });
 });
 

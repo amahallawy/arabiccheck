@@ -62,6 +62,15 @@ choices:
   sent with each check (the worker already accepts `ignored`) and applied on
   the page at once so the mark disappears without waiting for the next check.
   A reload forgets them. Nothing the user types is written to storage.
+- **Accepting keeps undo.** `applyAll` decides which suggestions still
+  apply; each is then typed into the text box with
+  `document.execCommand("insertText")`, the only way to change a text box
+  that the browser's own Ctrl+Z can undo (setting `value` empties the undo
+  history). It is deprecated but supported by every current browser; if it
+  fails, the page falls back to `setRangeText` and then to the exact
+  `applyAll` result. The caret moves with the text (`moveOffset`).
+- **The build uses relative URLs** (`base: "./"`), and the page finds
+  `models/` and `ort/` from `document.baseURI`, so it works from a sub-path.
 - **Checking** is debounced by 250 ms (design, data flow). The client already
   drops replies for older text; the page also re-merges each result against
   the textarea's current value before rendering, so a suggestion whose word

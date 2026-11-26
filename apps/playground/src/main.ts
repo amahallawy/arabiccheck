@@ -18,6 +18,7 @@ const marked = byId<HTMLDivElement>("marked");
 const list = byId<HTMLUListElement>("list");
 const empty = byId<HTMLParagraphElement>("empty");
 const count = byId<HTMLSpanElement>("count");
+const announce = byId<HTMLParagraphElement>("announce");
 const acceptAllButton = byId<HTMLButtonElement>("accept-all");
 const busy = byId<HTMLParagraphElement>("busy");
 const models = byId<HTMLParagraphElement>("models");
@@ -89,8 +90,20 @@ function render(): void {
     }),
   );
 
+  // Rebuilding the list would drop keyboard focus; put it back on the same place.
+  const focused = document.activeElement;
+  const focusedItem = focused instanceof HTMLButtonElement ? focused.closest("li") : null;
+  const wasAt = focusedItem && list.contains(focusedItem) ? [...list.children].indexOf(focusedItem) : -1;
+  const wasButton = focusedItem ? [...focusedItem.querySelectorAll("button")].indexOf(focused as HTMLButtonElement) : -1;
   list.replaceChildren(...shown.map((s) => listItem(s)));
+  if (wasAt >= 0) {
+    const item = list.children[Math.min(wasAt, list.children.length - 1)];
+    const buttons = item?.querySelectorAll<HTMLButtonElement>("button");
+    (buttons?.[wasButton] ?? buttons?.[0] ?? textBox).focus();
+  }
   count.textContent = String(shown.length);
+  const said = shown.length === 1 ? "1 suggestion" : `${shown.length} suggestions`;
+  if (announce.textContent !== said) announce.textContent = said;
   empty.hidden = shown.length > 0;
   empty.textContent = text.trim() === "" ? "Suggestions appear here as you type." : "No suggestions.";
   acceptAllButton.disabled = shown.length === 0;
@@ -117,9 +130,18 @@ function listItem(s: Suggestion): HTMLLIElement {
 
   const actions = document.createElement("div");
   actions.className = "actions";
+  const position = (): number => [...list.children].indexOf(item);
   actions.append(
-    button("Accept", `Replace ${s.typed} with ${s.replacement}`, () => accept([s], apply(textBox.value, s))),
-    button("Ignore", `Ignore ${s.typed} for this session`, () => ignore(s.typed)),
+    button("Accept", `Replace ${s.typed} with ${s.replacement}`, () => {
+      const at = position();
+      accept([s]);
+      focusAfter(at);
+    }),
+    button("Ignore", `Ignore ${s.typed} for this session`, () => {
+      const at = position();
+      ignore(s.typed);
+      focusAfter(at);
+    }),
   );
 
   item.append(words, label, actions);
@@ -135,17 +157,37 @@ function button(text: string, label: string, onClick: () => void): HTMLButtonEle
   return b;
 }
 
-/** Puts `next` in the text box after `applied` were accepted, keeping the caret and the other marks. */
-function accept(applied: readonly Suggestion[], next: string): void {
+/**
+ * Accepts suggestions: changes only their words, keeps the caret where the writer left it
+ * and the other marks in place. `applyAll` (core) decides which still apply; each is then
+ * typed in with "insertText", so the writer can undo it with Ctrl+Z.
+ */
+function accept(chosen: readonly Suggestion[]): void {
   const before = textBox.value;
-  if (next === before) return; // the word changed since it was checked: nothing to do
-  const live = applied.filter((s) => before.slice(s.start, s.end) === s.typed);
-  const { selectionStart, selectionEnd } = textBox;
-  textBox.value = next;
-  textBox.setSelectionRange(moveOffset(selectionStart, live), moveOffset(selectionEnd, live));
+  const next = applyAll(before, chosen);
+  if (next === before) return; // the words changed since they were checked: nothing to do
+  const live = chosen.filter((s) => apply(before, s) !== before);
+  const { selectionStart, selectionEnd, selectionDirection } = textBox;
+
+  textBox.focus({ preventScroll: true });
+  for (const s of [...live].sort((a, b) => b.start - a.start)) {
+    textBox.setSelectionRange(s.start, s.end);
+    // execCommand is deprecated but is still the only way to edit a text box with undo.
+    if (!document.execCommand("insertText", false, s.replacement)) textBox.setRangeText(s.replacement);
+  }
+  if (textBox.value !== next) textBox.value = next; // the edits above went wrong: fall back to the exact result
+
+  textBox.setSelectionRange(moveOffset(selectionStart, live), moveOffset(selectionEnd, live), selectionDirection ?? "none");
   suggestions = shiftAfter(suggestions, live);
   render();
   scheduleCheck.now(next);
+}
+
+/** After an item's Accept or Ignore, moves focus to the item now in its place, or back to the text. */
+function focusAfter(index: number): void {
+  const items = list.querySelectorAll<HTMLLIElement>("li");
+  const target = items[Math.min(index, items.length - 1)];
+  (target?.querySelector("button") ?? textBox).focus();
 }
 
 function ignore(word: string): void {
@@ -154,8 +196,8 @@ function ignore(word: string): void {
 }
 
 acceptAllButton.addEventListener("click", () => {
-  const shown = visible(textBox.value, suggestions, ignored);
-  accept(shown, applyAll(textBox.value, shown));
+  accept(visible(textBox.value, suggestions, ignored));
+  textBox.focus();
 });
 
 textBox.addEventListener("input", () => {
