@@ -16,11 +16,13 @@ Arabic and English, MIT, public) are in Company ADR-0004.
 
 - The **CI** workflow (`.github/workflows/ci.yml`, job `Typecheck, test,
   build`) is green on the PR's HEAD: `npm ci`, typecheck, unit tests with the
-  80% coverage threshold, and build.
+  80% coverage threshold, build, and the end-to-end tests (offline reload, no
+  request to another origin; Playwright, Chromium).
 - Review of the diff by Claude's code-reviewer agent with no blocking issues.
 
 Run the same checks locally before pushing:
-`npm run typecheck && npm run test:coverage && npm run build`.
+`npm run typecheck && npm run test:coverage && npm run build && npm run test:e2e`
+(once: `npx playwright install chromium`).
 
 **Marker 2 (explicit authorization):**
 

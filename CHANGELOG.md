@@ -9,6 +9,16 @@ while writing, and names the issue that has the detail. Versions follow
 Merged but not yet released. Each entry moves into the next version's section
 when that version ships.
 
+### The page works offline, and never talks to another site
+
+After the page has loaded once, it keeps working with the network off: the
+page, the checkers and the models are kept on your device, and a reload checks
+text as before. The first visit downloads them once; a new version of the page
+or of a model replaces the old copy by itself. Two automated tests now run on
+every change: one reloads the page with the network off and checks a sentence,
+the other watches every request the page makes and fails if any goes to another
+site, or if checking text makes any request at all. (#9)
+
 ### A page to try the checkers
 
 There is now something to try: run `npm run dev -w @arabiccheck/playground`

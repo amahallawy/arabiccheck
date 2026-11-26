@@ -4,8 +4,8 @@ schema: 1
 updated: 2026-11-26
 goal: "M0: offline playground page with Arabic and English spelling and real-word fixes, plus an evaluation harness"
 due: 2026-12-08
-progress: 70
-progress_note: "Core (#5), model delivery (#6), checkers (#7) and evaluation (#10, merged; Arabic sets await the owner's review) done; playground page (#8) in review; next: offline (#9)"
+progress: 85
+progress_note: "Core (#5), model delivery (#6), checkers (#7), evaluation (#10, merged; Arabic sets await the owner's review) and playground page (#8) done; offline (#9) in review; then M0 wrap-up and the 0.1.0 release"
 health: on-track
 blockers:
 next_release: "0.1.0"

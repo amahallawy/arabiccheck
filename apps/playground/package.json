@@ -9,7 +9,7 @@
     "dev": "node ../../scripts/copy-ort.ts && vite",
     "build": "node ../../scripts/copy-ort.ts && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json"
   },
   "dependencies": {
     "@arabiccheck/core": "0.0.0",
