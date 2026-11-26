@@ -2,13 +2,21 @@
   "name": "@arabiccheck/playground",
   "version": "0.0.0",
   "private": true,
-  "description": "The M0 playground page. #6 sets up its self-hosted runtime and model folders; the page arrives in #8.",
+  "description": "The M0 playground page: type Arabic or English, see suggestions, accept or ignore them. Everything runs on the device.",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "node ../../scripts/copy-ort.ts"
+    "dev": "node ../../scripts/copy-ort.ts && vite",
+    "build": "node ../../scripts/copy-ort.ts && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@arabiccheck/core": "0.0.0",
+    "@arabiccheck/worker": "0.0.0",
     "onnxruntime-web": "1.31.1"
+  },
+  "devDependencies": {
+    "vite": "8.3.8"
   }
 }

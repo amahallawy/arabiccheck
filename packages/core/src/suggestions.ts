@@ -87,3 +87,21 @@ export function apply(text: string, suggestion: Suggestion): string {
   if (!holdsTyped(text, suggestion)) return text;
   return text.slice(0, suggestion.start) + suggestion.replacement + text.slice(suggestion.end);
 }
+
+/**
+ * Applies every suggestion that still holds its typed text, by the same rules as
+ * `apply()`. Where two overlap, the earlier one in the list wins and the other is
+ * skipped. Replacements are made from the end of the text backwards, so each
+ * suggestion's offsets still refer to the text as it was checked.
+ */
+export function applyAll(text: string, suggestions: readonly Suggestion[]): string {
+  const chosen: Suggestion[] = [];
+  for (const s of suggestions) {
+    if (holdsTyped(text, s) && !chosen.some((c) => overlaps(c, s))) chosen.push(s);
+  }
+  let result = text;
+  for (const s of chosen.sort((a, b) => b.start - a.start)) {
+    result = result.slice(0, s.start) + s.replacement + result.slice(s.end);
+  }
+  return result;
+}

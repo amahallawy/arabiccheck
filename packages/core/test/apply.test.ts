@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { apply, type Suggestion } from "../src/index.js";
+import { apply, applyAll, type Suggestion } from "../src/index.js";
 
 function suggestion(start: number, end: number, typed: string, replacement: string): Suggestion {
   return {
@@ -59,5 +59,51 @@ describe("apply", () => {
     expect(apply(text, suggestion(10, 14, "", "x"))).toBe(text);
     expect(apply(text, suggestion(3, 1, "", "x"))).toBe(text);
     expect(apply(text, suggestion(-1, 2, "", "x"))).toBe(text);
+  });
+});
+
+describe("applyAll", () => {
+  const at = (text: string, typed: string, replacement: string): Suggestion => {
+    const start = text.indexOf(typed);
+    return suggestion(start, start + typed.length, typed, replacement);
+  };
+
+  it("applies every suggestion, whatever order they come in, keeping everything else", () => {
+    const text = "ذَهَبْتُ  الى المدرسه\nفي الرياظ";
+    const all = [at(text, "الرياظ", "الرياض"), at(text, "الى", "إلى"), at(text, "المدرسه", "المدرسة")];
+    expect(applyAll(text, all)).toBe("ذَهَبْتُ  إلى المدرسة\nفي الرياض");
+  });
+
+  it("handles replacements longer and shorter than the typed word", () => {
+    const text = "I recieve teh letter";
+    expect(applyAll(text, [at(text, "recieve", "received"), at(text, "teh", "a")])).toBe("I received a letter");
+  });
+
+  it("skips a suggestion that no longer holds its typed text and applies the rest", () => {
+    const text = "a letter from the bank recieve";
+    const stale = suggestion(9, 13, "form", "from");
+    expect(applyAll(text, [stale, at(text, "recieve", "receive")])).toBe("a letter from the bank receive");
+  });
+
+  it("applies only the first of two overlapping suggestions", () => {
+    const text = "a letter form the bank";
+    const first = at(text, "form", "from");
+    const overlapping = suggestion(first.start + 1, first.end, "orm", "xx");
+    expect(applyAll(text, [first, overlapping])).toBe("a letter from the bank");
+    expect(applyAll(text, [overlapping, first])).toBe("a letter fxx the bank");
+  });
+
+  it("returns the text unchanged with no suggestions", () => {
+    expect(applyAll("نص", [])).toBe("نص");
+  });
+
+  it("uses UTF-16 offsets around emoji, and a replacement may contain one", () => {
+    const text = "😀 recieve 😀 teh";
+    expect(applyAll(text, [at(text, "recieve", "receive 👍"), at(text, "teh", "the")])).toBe("😀 receive 👍 😀 the");
+  });
+
+  it("skips a suggestion that splits a surrogate pair", () => {
+    const text = "😀 hi";
+    expect(applyAll(text, [suggestion(1, 2, text.slice(1, 2), "x"), at(text, "hi", "ho")])).toBe("😀 ho");
   });
 });
