@@ -1,0 +1,200 @@
+/* ArabicCheck playground. System fonts only: nothing loads from another site. */
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --ink: #1d1c1a;
+  --muted: #5f5b54;
+  --line: #e3dfd7;
+  --accent: #0f6b5c;
+  --accent-ink: #ffffff;
+  --spelling-bg: #fde3df;
+  --spelling-line: #c0392b;
+  --realword-bg: #fdf0cf;
+  --realword-line: #b07800;
+  --problem: #a3261b;
+  --radius: 10px;
+  --font: system-ui, "Segoe UI", "Noto Sans", "Noto Sans Arabic", Tahoma, sans-serif;
+  --font-text: "Noto Naskh Arabic", "Segoe UI", "Geeza Pro", Tahoma, system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161513;
+    --surface: #1f1e1b;
+    --ink: #ecebe7;
+    --muted: #a7a29a;
+    --line: #36342f;
+    --accent: #4fc2ab;
+    --accent-ink: #0b1f1b;
+    --spelling-bg: #4a2420;
+    --spelling-line: #f08a7e;
+    --realword-bg: #43361a;
+    --realword-line: #e8b54d;
+    --problem: #f08a7e;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 var(--font);
+}
+
+.top, .panes, .foot {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.top { padding-top: 24px; }
+h1 { margin: 0; font-size: 1.5rem; font-weight: 650; letter-spacing: -0.01em; }
+.tag { color: var(--muted); font-weight: 400; }
+.lede { margin: 4px 0 20px; color: var(--muted); max-width: 60ch; }
+
+.panes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 800px) {
+  .panes { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+.pane {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  min-width: 0;
+}
+
+h2 { margin: 0 0 8px; font-size: 0.95rem; font-weight: 600; }
+
+.pane-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.marked + .pane-head { margin-top: 20px; }
+
+textarea {
+  display: block;
+  width: 100%;
+  height: 18rem;
+  min-height: 6rem;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1.125rem/1.8 var(--font-text);
+}
+textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 799px) {
+  /* Stacked: keep the suggestions in view while typing. */
+  textarea { height: 10rem; }
+}
+
+.examples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.examples-label { color: var(--muted); font-size: 0.9rem; }
+.examples button { padding: 4px 12px; min-height: 32px; }
+
+.marked {
+  min-height: 4rem;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--bg);
+  font: 1.125rem/1.8 var(--font-text);
+  overflow-wrap: anywhere;
+}
+.marked p { margin: 0; white-space: pre-wrap; unicode-bidi: plaintext; }
+
+mark {
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+  text-decoration: underline 2px;
+  text-underline-offset: 4px;
+}
+mark.spelling { background: var(--spelling-bg); text-decoration-color: var(--spelling-line); }
+mark.real-word { background: var(--realword-bg); text-decoration-color: var(--realword-line); text-decoration-style: wavy; }
+
+.busy { margin: 0; color: var(--muted); font-size: 0.875rem; }
+.count {
+  display: inline-block;
+  min-width: 1.6em;
+  margin-inline-start: 4px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--line);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.list { list-style: none; margin: 0; padding: 0; }
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "words actions" "kind actions";
+  gap: 0 12px;
+  align-items: center;
+  padding-block: 10px;
+  padding-inline-start: 12px;
+  border-top: 1px solid var(--line);
+  border-inline-start: 3px solid var(--realword-line);
+}
+.item.spelling { border-inline-start-color: var(--spelling-line); }
+.item:first-child { border-top: 0; }
+
+.words { grid-area: words; margin: 0; font: 1.125rem/1.6 var(--font-text); overflow-wrap: anywhere; }
+.typed { color: var(--muted); text-decoration: line-through; }
+.replacement { font-weight: 600; }
+.kind { grid-area: kind; margin: 0; color: var(--muted); font-size: 0.85rem; }
+.actions { grid-area: actions; display: flex; gap: 8px; }
+
+button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  min-height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--muted); }
+button:disabled { opacity: 0.5; cursor: default; }
+.actions button:first-child, #accept-all {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.empty { margin: 8px 0 0; color: var(--muted); }
+.empty[hidden] { display: none; }
+
+.foot {
+  margin-top: 16px;
+  padding-bottom: 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.foot p { margin: 2px 0; overflow-wrap: anywhere; }
+.foot .problem { color: var(--problem); }
+
+@media (max-width: 480px) {
+  .item { grid-template-columns: 1fr; grid-template-areas: "words" "kind" "actions"; }
+  .actions { margin-top: 8px; }
+  .actions button { flex: 1; min-height: 44px; }
+  .examples button { min-height: 40px; }
+}

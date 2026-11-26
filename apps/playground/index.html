@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>ArabicCheck playground</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1>ArabicCheck <span class="tag">playground</span></h1>
+      <p class="lede">Spelling and real-word checks for Arabic and English. Everything runs on this device: nothing you type is sent anywhere.</p>
+    </header>
+
+    <main class="panes">
+      <section class="pane" aria-labelledby="input-label">
+        <h2 id="input-label"><label for="text">Your text</label></h2>
+        <textarea id="text" dir="auto" spellcheck="false" autocomplete="off" rows="12"
+          placeholder="Type or paste Arabic or English text."></textarea>
+        <div class="examples" role="group" aria-label="Try an example">
+          <span class="examples-label">Try:</span>
+          <button type="button" data-example="ar">Arabic</button>
+          <button type="button" data-example="en">English</button>
+          <button type="button" data-example="mixed">Mixed</button>
+        </div>
+      </section>
+
+      <section class="pane" aria-labelledby="checked-label">
+        <div class="pane-head">
+          <h2 id="checked-label">Checked</h2>
+          <p id="busy" class="busy" hidden>Checking…</p>
+        </div>
+        <div id="marked" class="marked" aria-label="Your text with suggestions marked"></div>
+
+        <div class="pane-head">
+          <h2 id="list-label">Suggestions <span id="count" class="count" aria-live="polite">0</span></h2>
+          <button id="accept-all" type="button" disabled>Accept all</button>
+        </div>
+        <ul id="list" class="list" aria-labelledby="list-label"></ul>
+        <p id="empty" class="empty">No suggestions.</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p id="models">Arabic model: loading… · English model: loading…</p>
+      <p id="timing">Last check: none yet</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

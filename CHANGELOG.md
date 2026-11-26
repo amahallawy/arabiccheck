@@ -9,6 +9,18 @@ while writing, and names the issue that has the detail. Versions follow
 Merged but not yet released. Each entry moves into the next version's section
 when that version ships.
 
+### A page to try the checkers
+
+There is now something to try: run `npm run dev -w @arabiccheck/playground`
+and type or paste Arabic, English or both. Each mistake is marked in your text,
+line by line in its own direction, and listed with its fix and what kind of
+mistake it is (for Arabic: hamza, taa marbuta, a sound-alike letter, …). Accept
+one, ignore a word for as long as the page is open, or accept them all; only
+the marked words change, and diacritics and spacing stay as you typed them.
+Checking waits until you pause and runs in the background, so typing never
+waits on it. The footer shows how long each model took to load and how long the
+last check took. Works at phone width; "Try" buttons fill in sample text. (#8)
+
 ### We can measure how often the checkers are right
 
 `npm run eval` scores both checkers on about 600 test sentences written for

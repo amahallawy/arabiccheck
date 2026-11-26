@@ -4,7 +4,8 @@
 **Status**: Approved (PR #4, 2026-11-24)
 **Decisions**: AgDR-0001 (repo tooling), AgDR-0002 (checker engines),
 AgDR-0003 (model delivery), AgDR-0004 (evaluation), AgDR-0005 (scripts and
-runtime delivery), AgDR-0006 (adapters, worker protocol, source resolution)
+runtime delivery), AgDR-0006 (adapters, worker protocol, source resolution),
+AgDR-0007 (playground page)
 
 ## Shape
 

@@ -1,11 +1,11 @@
 # Company status report: read by the Company dashboard and checked before every PR.
 # Keep it current (at least every 14 days). See /project-status in the Company workspace.
 schema: 1
-updated: 2026-11-25
+updated: 2026-11-26
 goal: "M0: offline playground page with Arabic and English spelling and real-word fixes, plus an evaluation harness"
 due: 2026-12-08
-progress: 55
-progress_note: "Core (#5), model delivery (#6) and checkers (#7) done; evaluation (#10) in review, waiting on the owner's review of the Arabic sets; next: playground page (#8)"
+progress: 70
+progress_note: "Core (#5), model delivery (#6), checkers (#7) and evaluation (#10, merged; Arabic sets await the owner's review) done; playground page (#8) in review; next: offline (#9)"
 health: on-track
 blockers:
 next_release: "0.1.0"
