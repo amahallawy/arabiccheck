@@ -9,6 +9,8 @@ build/
 .wxt/
 *.tsbuildinfo
 coverage/
+test-results/
+playwright-report/
 
 # Downloaded models and dictionaries (fetched by scripts, never committed)
 .cache/

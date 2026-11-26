@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "lib": ["es2023", "dom"],
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts", "plugins", "playwright.config.ts", "e2e"]
+}

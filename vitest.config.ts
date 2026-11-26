@@ -17,6 +17,8 @@ export default defineConfig({
         "packages/worker/src/worker.ts",
         "apps/playground/src/checker.worker.ts",
         "apps/playground/src/main.ts",
+        // The service worker's entry wires logic.ts (tested) to its events; the e2e tests run it.
+        "apps/playground/src/sw/sw.ts",
         "eval/src/run.ts",
       ],
       thresholds: { lines: 80, functions: 80, branches: 80, statements: 80 },

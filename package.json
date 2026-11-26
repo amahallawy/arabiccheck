@@ -22,9 +22,11 @@
     "eval": "npm run build --silent && node eval/src/run.ts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "build": "npm run build -w @arabiccheck/core && npm run build -w @arabiccheck/checker-en -w @arabiccheck/checker-ar && npm run build -w @arabiccheck/worker && npm run build -w @arabiccheck/playground"
+    "build": "npm run build -w @arabiccheck/core && npm run build -w @arabiccheck/checker-en -w @arabiccheck/checker-ar && npm run build -w @arabiccheck/worker && npm run build -w @arabiccheck/playground",
+    "test:e2e": "playwright test -c apps/playground/playwright.config.ts"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.0",
     "@types/node": "24.19.2",
     "@vitest/coverage-v8": "5.1.0",
     "typescript": "7.0.2",

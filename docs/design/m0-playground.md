@@ -5,7 +5,7 @@
 **Decisions**: AgDR-0001 (repo tooling), AgDR-0002 (checker engines),
 AgDR-0003 (model delivery), AgDR-0004 (evaluation), AgDR-0005 (scripts and
 runtime delivery), AgDR-0006 (adapters, worker protocol, source resolution),
-AgDR-0007 (playground page)
+AgDR-0007 (playground page), AgDR-0008 (offline)
 
 ## Shape
 

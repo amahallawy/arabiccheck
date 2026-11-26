@@ -2,10 +2,13 @@
 // Logic lives in view.ts (unit-tested); this file only wires it to the page (AgDR-0007).
 // Every piece of the user's text is written with textContent, never as HTML.
 import { apply, applyAll, type Suggestion } from "@arabiccheck/core";
-import { createCheckerClient, type CheckResult, type StatusMessage } from "@arabiccheck/worker";
+import { createCheckerClient, type CheckerClient, type CheckResult, type StatusMessage } from "@arabiccheck/worker";
+import { untilActive } from "./sw/register.ts";
 import { checkLine, debounce, kindLabel, moveOffset, paragraphs, shiftAfter, statusLine, visible } from "./view.ts";
 
 const DEBOUNCE_MS = 250;
+/** How long the first visit waits for the offline copy (about 33 MB) before checking online anyway. */
+const OFFLINE_SETUP_TIMEOUT_MS = 120_000;
 
 const byId = <T extends HTMLElement>(id: string): T => {
   const element = document.getElementById(id);
@@ -24,11 +27,32 @@ const busy = byId<HTMLParagraphElement>("busy");
 const models = byId<HTMLParagraphElement>("models");
 const timing = byId<HTMLParagraphElement>("timing");
 
-const worker = new Worker(new URL("./checker.worker.ts", import.meta.url), { type: "module", name: "arabiccheck-checkers" });
 const here = (path: string): string => new URL(path, document.baseURI).href;
-const client = createCheckerClient(worker, {
-  models: { en: here("models/en/"), ar: here("models/ar/") },
-  wasmPaths: here("ort/"),
+
+/**
+ * In a production build, installs the service worker (src/sw/sw.ts) and waits until it is
+ * active, so the models download once, into its cache, and the page works offline after
+ * this (AgDR-0008). Without service workers, or if it fails, the page just works online.
+ */
+async function prepareOffline(): Promise<void> {
+  if (!import.meta.env.PROD || !("serviceWorker" in navigator)) return;
+  try {
+    const registration = await navigator.serviceWorker.register(here("sw.js"));
+    if (registration.active === null) models.textContent = "Saving the page and models for offline use…";
+    // A stuck install must not stop checking: after the timeout the page goes on online.
+    const readiness = await untilActive(registration, OFFLINE_SETUP_TIMEOUT_MS);
+    if (readiness !== "active") console.warn(`ArabicCheck: the offline copy is not ready (${readiness}); checking works online.`);
+  } catch (error) {
+    console.warn("ArabicCheck: the offline copy could not be set up; checking works online only.", error);
+  }
+}
+
+const client: Promise<CheckerClient> = prepareOffline().then(() => {
+  const worker = new Worker(new URL("./checker.worker.ts", import.meta.url), { type: "module", name: "arabiccheck-checkers" });
+  return createCheckerClient(worker, {
+    models: { en: here("models/en/"), ar: here("models/ar/") },
+    wasmPaths: here("ort/"),
+  });
 });
 
 /** Suggestions from the latest answer, in the offsets of the text as it is now (as far as we know). */
@@ -39,17 +63,19 @@ const statuses: StatusMessage[] = [];
 let lastResult: CheckResult | undefined;
 let checking = 0;
 
-client.onStatus((status) => {
-  statuses.push(status);
-  models.textContent = statusLine(statuses);
-  models.classList.toggle("problem", statuses.some((s) => s.type === "load-error"));
-});
+void client.then((ready) =>
+  ready.onStatus((status) => {
+    statuses.push(status);
+    models.textContent = statusLine(statuses);
+    models.classList.toggle("problem", statuses.some((s) => s.type === "load-error"));
+  }),
+);
 
 async function check(text: string): Promise<void> {
   checking += 1;
   busy.hidden = false;
   try {
-    const result = await client.check(text, ignored);
+    const result = await (await client).check(text, ignored);
     if (result === undefined) return; // a newer check was asked for; its answer will render
     lastResult = result;
     // The answer is for `text`; if the writer has typed since, render() drops what no longer fits.
