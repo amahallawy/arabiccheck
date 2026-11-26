@@ -36,20 +36,24 @@ small hand-written service worker; AgDR-0001 already chose Playwright
   worker itself, wiring those to `install`, `activate` and `fetch`.
 - **The plugin** (`plugins/service-worker.ts`, used by `vite.config.ts` in
   `vite build` only) emits `sw.ts` as `sw.js` at the site root, and fills in
-  the list (every built file, plus everything in `public/`: `ort/` and
-  `models/`) and the version. The version is the first 16 hex characters of a
-  SHA-256 over `models.lock.json`, the sorted file names and the
-  onnxruntime-web version, so a model or code change makes a new cache and
-  the old one is deleted on activation.
+  the list (every built file including `index.html`, plus everything in
+  `public/`: `ort/` and `models/`) and the version. The version is the first
+  16 hex characters of a SHA-256 over `models.lock.json`, the sorted file
+  names, the onnxruntime-web version and the service worker's own code, so a
+  model, page or worker change makes a new cache and the old one is deleted
+  on activation.
 - **Fetch** is cache-first for the page's own files, with the network as a
-  fallback (whose answer is cached). A navigation that misses falls back to
+  fallback. Only install writes to the cache, so it holds exactly the build's
+  files and never a stray response. A navigation that misses falls back to
   the cached page. Nothing from another origin is ever fetched or cached by
   the service worker.
 - **The page registers it in production builds only** (`import.meta.env.PROD`;
   the dev server keeps working uncached) and starts the checker worker once
-  the service worker is active, so the models download once, into its cache.
-  If registration fails, or the browser has no service workers, the page
-  starts the worker at once and simply isn't available offline.
+  the service worker is active (`untilActive`, unit-tested), so the models
+  download once, into its cache. The footer says the page is being saved for
+  offline use meanwhile. If registration fails, the new worker turns
+  redundant, the browser has no service workers, or two minutes pass, the
+  page starts the checkers anyway and works online.
 - **Playwright `@playwright/test@1.65.0`** (exact; 1.65.1 was 13 days old),
   Chromium only. `npm run test:e2e` builds nothing itself; it runs against
   `vite preview` of the built page. Two tests: offline reload still checks,
@@ -64,8 +68,13 @@ small hand-written service worker; AgDR-0001 already chose Playwright
   browser download in CI on a cache miss.
 - The first visit takes as long as the model download before the first
   check, as it already did; later visits start from the cache.
-- A new version takes over as soon as it is installed (`skipWaiting`). Hashed
-  file names mean an open page never asks for a file the new cache lacks
-  except a lazily loaded chunk, and the page loads none.
+- A new version takes over as soon as it is installed (`skipWaiting`) and
+  deletes the old cache. An open old page has already loaded everything it
+  needs (it loads no chunk lazily), so it keeps working; its next reload gets
+  the new version. Accepted for M0.
+- Every new version re-downloads all ~33 MB, models included, because each
+  version is its own cache. Copying unchanged files across would need the
+  models' paths to change with their content; accepted for M0, where
+  versions are rare.
 - SC-004 (first load under 25 MB) holds only if the server compresses files
   (about 15 MB gzipped against 33 MB raw); measuring it is left to hosting.

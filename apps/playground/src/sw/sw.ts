@@ -54,7 +54,10 @@ scope.addEventListener("fetch", (event) => {
   event.respondWith(respond(event.request));
 });
 
-/** Cache first; on a miss, the network, whose answer is kept. Offline, a page load gets the cached page. */
+/**
+ * The cached copy, else the network. Only install writes to the cache, so it holds exactly
+ * the build's files. Offline, a page load that misses gets the cached page.
+ */
 async function respond(request: Request): Promise<Response> {
   const cache = await caches.open(CACHE);
   // ignoreVary: servers send `Vary: Origin`, and the page's module scripts are requested with an
@@ -62,9 +65,7 @@ async function respond(request: Request): Promise<Response> {
   const cached = await cache.match(request, { ignoreVary: true, ignoreSearch: request.mode === "navigate" });
   if (cached) return cached;
   try {
-    const response = await fetch(request);
-    if (response.ok && response.type === "basic") await cache.put(request, response.clone());
-    return response;
+    return await fetch(request);
   } catch (error) {
     if (request.mode === "navigate") {
       const page = await cache.match("./", { ignoreVary: true });

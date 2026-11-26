@@ -23,6 +23,24 @@ test("after the first load, a reload with the network off still checks text", as
   await modelsLoaded(page);
   // The service worker is active and controls the page: everything is in its cache.
   await expect.poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null)).toBe(true);
+  // One cache, holding the page, the scripts, the runtime and both models.
+  const cached = await page.evaluate(async () => {
+    const names = (await caches.keys()).filter((name) => name.startsWith("arabiccheck-"));
+    const cache = await caches.open(names[0] ?? "none");
+    return { names, paths: (await cache.keys()).map((request) => new URL(request.url).pathname) };
+  });
+  expect(cached.names).toHaveLength(1);
+  expect(cached.paths).toEqual(
+    expect.arrayContaining([
+      "/",
+      "/index.html",
+      "/ort/ort-wasm-simd-threaded.mjs",
+      "/ort/ort-wasm-simd-threaded.wasm",
+      "/models/ar/model.onnx",
+      "/models/en/wrong-word.onnx",
+    ]),
+  );
+  expect(cached.paths.filter((path) => path.startsWith("/assets/") && path.endsWith(".js")).length).toBeGreaterThan(0);
 
   await context.setOffline(true);
   await page.reload();

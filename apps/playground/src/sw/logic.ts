@@ -9,17 +9,25 @@ export function precacheUrls(files: readonly string[]): string[] {
     const path = file.replaceAll("\\", "/").replace(/^\.\//, "");
     const name = path.split("/").at(-1) ?? "";
     if (path === "sw.js" || name.startsWith(".") || path.endsWith(".map")) continue;
-    urls.add(path);
+    urls.add(path.split("/").map(encodeURIComponent).join("/"));
   }
   return ["./", ...[...urls].sort()];
 }
 
-/**
- * The cache's version: 16 hex characters of a SHA-256 over the model lock, the built
- * file names (hashed by Vite, so they change with the code) and the runtime's version.
- */
-export async function cacheVersion(lock: string, files: readonly string[], runtime: string): Promise<string> {
-  const input = JSON.stringify({ lock, files: [...files].sort(), runtime });
+export interface VersionInput {
+  /** models.lock.json's text. */
+  readonly lock: string;
+  /** The cached files' names (Vite hashes the scripts' names, so they change with the code). */
+  readonly files: readonly string[];
+  /** onnxruntime-web's version. */
+  readonly runtime: string;
+  /** The service worker's own code, so a change to it makes a new cache too. */
+  readonly code: string;
+}
+
+/** The cache's version: 16 hex characters of a SHA-256 over everything that decides what it holds. */
+export async function cacheVersion({ lock, files, runtime, code }: VersionInput): Promise<string> {
+  const input = JSON.stringify({ lock, files: [...files].sort(), runtime, code });
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(input));
   return [...new Uint8Array(digest)]
     .slice(0, 8)

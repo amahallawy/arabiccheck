@@ -28,6 +28,8 @@ export function serviceWorker(options: ServiceWorkerOptions): Plugin {
   return {
     name: "arabiccheck-service-worker",
     apply: "build",
+    // After Vite's own plugins, so index.html is in the bundle when the list is made.
+    enforce: "post",
     buildStart() {
       this.emitFile({ type: "chunk", id: options.entry, fileName: "sw.js" });
     },
@@ -36,10 +38,16 @@ export function serviceWorker(options: ServiceWorkerOptions): Plugin {
       if (!urls.some((url) => url.startsWith("models/"))) {
         this.error(`no model files under ${options.publicDir}: run npm run fetch-models before building`);
       }
-      const version = await cacheVersion(readFileSync(options.lockFile, "utf8"), urls, options.runtimeVersion);
+      if (!urls.includes("index.html")) this.error("index.html is missing from the files to cache");
       const sw = bundle["sw.js"];
       if (sw?.type !== "chunk" || !sw.code.includes(GLOBAL)) this.error(`sw.js was built without reading ${GLOBAL}`);
       if (sw.imports.length > 0) this.error(`sw.js must be one script, but imports ${sw.imports.join(", ")}`);
+      const version = await cacheVersion({
+        lock: readFileSync(options.lockFile, "utf8"),
+        files: urls,
+        runtime: options.runtimeVersion,
+        code: sw.code,
+      });
       sw.code = `self.${GLOBAL} = ${JSON.stringify({ version, urls })};\n${sw.code}`;
       this.info(`service worker: ${urls.length} files, cache ${version}`);
     },

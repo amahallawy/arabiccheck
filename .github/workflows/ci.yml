@@ -38,11 +38,10 @@ jobs:
       - run: npm run test:coverage
       - run: npm run build
       # Offline and no-third-party tests against the built page (AgDR-0008). The browser is
-      # cached by the lock file, which pins Playwright's version; --with-deps adds the OS
-      # libraries Chromium needs.
+      # cached by Playwright's installed version; --with-deps adds the OS libraries Chromium needs.
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: playwright-${{ runner.os }}-${{ hashFiles('node_modules/@playwright/test/package.json') }}
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

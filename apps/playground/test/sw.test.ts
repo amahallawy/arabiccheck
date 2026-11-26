@@ -1,5 +1,53 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cacheName, cacheVersion, handles, precacheUrls, staleCaches } from "../src/sw/logic.ts";
+import { untilActive } from "../src/sw/register.ts";
+
+/** A stand-in for a ServiceWorker: a state and "statechange" events. */
+class FakeWorker extends EventTarget {
+  constructor(public state: string) {
+    super();
+  }
+  become(state: string): void {
+    this.state = state;
+    this.dispatchEvent(new Event("statechange"));
+  }
+}
+
+describe("untilActive", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("is done at once when a worker is already active, or none is installing", async () => {
+    expect(await untilActive({ active: {}, installing: null, waiting: null }, 1000)).toBe("active");
+    expect(await untilActive({ active: null, installing: null, waiting: null }, 1000)).toBe("active");
+  });
+
+  it("is done at once when the installing worker has already finished, either way", async () => {
+    expect(await untilActive({ active: null, installing: new FakeWorker("activated"), waiting: null }, 1000)).toBe("active");
+    expect(await untilActive({ active: null, installing: null, waiting: new FakeWorker("redundant") }, 1000)).toBe("redundant");
+  });
+
+  it("waits for the installing worker to activate, or to fail", async () => {
+    const installing = new FakeWorker("installing");
+    const done = untilActive({ active: null, installing, waiting: null }, 1000);
+    installing.become("installed");
+    installing.become("activated");
+    expect(await done).toBe("active");
+
+    const failing = new FakeWorker("installing");
+    const failed = untilActive({ active: null, installing: failing, waiting: null }, 1000);
+    failing.become("redundant");
+    expect(await failed).toBe("redundant");
+  });
+
+  it("gives up after the timeout, so checking is never blocked for good", async () => {
+    vi.useFakeTimers();
+    const done = untilActive({ active: null, installing: new FakeWorker("installing"), waiting: null }, 1000);
+    vi.advanceTimersByTime(1000);
+    expect(await done).toBe("timeout");
+  });
+});
 
 describe("precacheUrls", () => {
   it("lists the page's root and every built file, relative and sorted", () => {
@@ -18,16 +66,23 @@ describe("precacheUrls", () => {
   it("lists each file once", () => {
     expect(precacheUrls(["a.js", "a.js", "./a.js"])).toEqual(["./", "a.js"]);
   });
+
+  it("escapes characters that would break a URL", () => {
+    expect(precacheUrls(["models/a b#1.onnx", "models/ع.txt"])).toEqual(["./", "models/%D8%B9.txt", "models/a%20b%231.onnx"]);
+  });
 });
 
 describe("cacheVersion", () => {
-  it("is 16 hex characters that change with the lock, the files or the runtime", async () => {
-    const base = await cacheVersion('{"schema":1}', ["a.js", "b.js"], "1.31.1");
-    expect(base).toMatch(/^[0-9a-f]{16}$/);
-    expect(await cacheVersion('{"schema":1}', ["b.js", "a.js"], "1.31.1")).toBe(base);
-    expect(await cacheVersion('{"schema":2}', ["a.js", "b.js"], "1.31.1")).not.toBe(base);
-    expect(await cacheVersion('{"schema":1}', ["a.js", "c.js"], "1.31.1")).not.toBe(base);
-    expect(await cacheVersion('{"schema":1}', ["a.js", "b.js"], "1.32.0")).not.toBe(base);
+  const base = { lock: '{"schema":1}', files: ["a.js", "b.js"], runtime: "1.31.1", code: "self.x=1" };
+
+  it("is 16 hex characters that change with the lock, the files, the runtime or the worker's code", async () => {
+    const version = await cacheVersion(base);
+    expect(version).toMatch(/^[0-9a-f]{16}$/);
+    expect(await cacheVersion({ ...base, files: ["b.js", "a.js"] })).toBe(version);
+    expect(await cacheVersion({ ...base, lock: '{"schema":2}' })).not.toBe(version);
+    expect(await cacheVersion({ ...base, files: ["a.js", "c.js"] })).not.toBe(version);
+    expect(await cacheVersion({ ...base, runtime: "1.32.0" })).not.toBe(version);
+    expect(await cacheVersion({ ...base, code: "self.x=2" })).not.toBe(version);
   });
 });
 

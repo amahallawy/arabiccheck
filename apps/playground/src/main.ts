@@ -3,9 +3,12 @@
 // Every piece of the user's text is written with textContent, never as HTML.
 import { apply, applyAll, type Suggestion } from "@arabiccheck/core";
 import { createCheckerClient, type CheckerClient, type CheckResult, type StatusMessage } from "@arabiccheck/worker";
+import { untilActive } from "./sw/register.ts";
 import { checkLine, debounce, kindLabel, moveOffset, paragraphs, shiftAfter, statusLine, visible } from "./view.ts";
 
 const DEBOUNCE_MS = 250;
+/** How long the first visit waits for the offline copy (about 33 MB) before checking online anyway. */
+const OFFLINE_SETUP_TIMEOUT_MS = 120_000;
 
 const byId = <T extends HTMLElement>(id: string): T => {
   const element = document.getElementById(id);
@@ -35,13 +38,10 @@ async function prepareOffline(): Promise<void> {
   if (!import.meta.env.PROD || !("serviceWorker" in navigator)) return;
   try {
     const registration = await navigator.serviceWorker.register(here("sw.js"));
-    const installing = registration.installing ?? registration.waiting;
-    if (registration.active !== null || installing === null) return;
-    await new Promise<void>((resolve) => {
-      installing.addEventListener("statechange", () => {
-        if (installing.state === "activated" || installing.state === "redundant") resolve();
-      });
-    });
+    if (registration.active === null) models.textContent = "Saving the page and models for offline use…";
+    // A stuck install must not stop checking: after the timeout the page goes on online.
+    const readiness = await untilActive(registration, OFFLINE_SETUP_TIMEOUT_MS);
+    if (readiness !== "active") console.warn(`ArabicCheck: the offline copy is not ready (${readiness}); checking works online.`);
   } catch (error) {
     console.warn("ArabicCheck: the offline copy could not be set up; checking works online only.", error);
   }
