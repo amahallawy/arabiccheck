@@ -1,0 +1,151 @@
+{"id": "en-errors-001", "lang": "en", "text": "I got a letter form the bank this morning.", "expected": "I got a letter from the bank this morning.", "source": "seed-v1"}
+{"id": "en-errors-002", "lang": "en", "text": "She did not recieve the package until Friday.", "expected": "She did not receive the package until Friday.", "source": "seed-v1"}
+{"id": "en-errors-003", "lang": "en", "text": "Their house is bigger then ours, but the garden is smaller.", "expected": "Their house is bigger than ours, but the garden is smaller.", "source": "seed-v1"}
+{"id": "en-errors-004", "lang": "en", "text": "Please seperate the glass bottles from the paper.", "expected": "Please separate the glass bottles from the paper.", "source": "seed-v1"}
+{"id": "en-errors-005", "lang": "en", "text": "We will definately finish the report before the meeting.", "expected": "We will definitely finish the report before the meeting.", "source": "seed-v1"}
+{"id": "en-errors-006", "lang": "en", "text": "The accident occured just after midnight on the main road.", "expected": "The accident occurred just after midnight on the main road.", "source": "seed-v1"}
+{"id": "en-errors-007", "lang": "en", "text": "Wait here untill the bus arrives.", "expected": "Wait here until the bus arrives.", "source": "seed-v1"}
+{"id": "en-errors-008", "lang": "en", "text": "I am not sure wich train goes to the airport.", "expected": "I am not sure which train goes to the airport.", "source": "seed-v1"}
+{"id": "en-errors-009", "lang": "en", "text": "He stayed home becuase he had a fever.", "expected": "He stayed home because he had a fever.", "source": "seed-v1"}
+{"id": "en-errors-010", "lang": "en", "text": "The hotel can accomodate two hundred guests.", "expected": "The hotel can accommodate two hundred guests.", "source": "seed-v1"}
+{"id": "en-errors-011", "lang": "en", "text": "I beleive the shop closes at six on Sundays.", "expected": "I believe the shop closes at six on Sundays.", "source": "seed-v1"}
+{"id": "en-errors-012", "lang": "en", "text": "The new goverment promised lower taxes.", "expected": "The new government promised lower taxes.", "source": "seed-v1"}
+{"id": "en-errors-013", "lang": "en", "text": "We should protect the enviroment for our children.", "expected": "We should protect the environment for our children.", "source": "seed-v1"}
+{"id": "en-errors-014", "lang": "en", "text": "I will call you tommorow after work.", "expected": "I will call you tomorrow after work.", "source": "seed-v1"}
+{"id": "en-errors-015", "lang": "en", "text": "That was a wierd dream about flying fish.", "expected": "That was a weird dream about flying fish.", "source": "seed-v1"}
+{"id": "en-errors-016", "lang": "en", "text": "It is not neccessary to bring your own towel.", "expected": "It is not necessary to bring your own towel.", "source": "seed-v1"}
+{"id": "en-errors-017", "lang": "en", "text": "Write your adress on the back of the form.", "expected": "Write your address on the back of the form.", "source": "seed-v1"}
+{"id": "en-errors-018", "lang": "en", "text": "I marked the dentist appointment on my calender.", "expected": "I marked the dentist appointment on my calendar.", "source": "seed-v1"}
+{"id": "en-errors-019", "lang": "en", "text": "They doubted the existance of the hidden room.", "expected": "They doubted the existence of the hidden room.", "source": "seed-v1"}
+{"id": "en-errors-020", "lang": "en", "text": "She wants to be independant after university.", "expected": "She wants to be independent after university.", "source": "seed-v1"}
+{"id": "en-errors-021", "lang": "en", "text": "A wedding is a happy occassion for the whole family.", "expected": "A wedding is a happy occasion for the whole family.", "source": "seed-v1"}
+{"id": "en-errors-022", "lang": "en", "text": "He decided to persue a career in medicine.", "expected": "He decided to pursue a career in medicine.", "source": "seed-v1"}
+{"id": "en-errors-023", "lang": "en", "text": "The results were announced publically last week.", "expected": "The results were announced publicly last week.", "source": "seed-v1"}
+{"id": "en-errors-024", "lang": "en", "text": "Can you reccomend a good book about history?", "expected": "Can you recommend a good book about history?", "source": "seed-v1"}
+{"id": "en-errors-025", "lang": "en", "text": "The doctor refered her to a specialist.", "expected": "The doctor referred her to a specialist.", "source": "seed-v1"}
+{"id": "en-errors-026", "lang": "en", "text": "The launch was sucessful despite the rain.", "expected": "The launch was successful despite the rain.", "source": "seed-v1"}
+{"id": "en-errors-027", "lang": "en", "text": "I am truely grateful for your help.", "expected": "I am truly grateful for your help.", "source": "seed-v1"}
+{"id": "en-errors-028", "lang": "en", "text": "They had an arguement about money.", "expected": "They had an argument about money.", "source": "seed-v1"}
+{"id": "en-errors-029", "lang": "en", "text": "The begining of the film was very slow.", "expected": "The beginning of the film was very slow.", "source": "seed-v1"}
+{"id": "en-errors-030", "lang": "en", "text": "He started his own buisness at the age of twenty.", "expected": "He started his own business at the age of twenty.", "source": "seed-v1"}
+{"id": "en-errors-031", "lang": "en", "text": "Are you comming to the party tonight?", "expected": "Are you coming to the party tonight?", "source": "seed-v1"}
+{"id": "en-errors-032", "lang": "en", "text": "She was not concious of the mistake.", "expected": "She was not conscious of the mistake.", "source": "seed-v1"}
+{"id": "en-errors-033", "lang": "en", "text": "Please do not embarass me in front of my friends.", "expected": "Please do not embarrass me in front of my friends.", "source": "seed-v1"}
+{"id": "en-errors-034", "lang": "en", "text": "Learning a foriegn language takes patience.", "expected": "Learning a foreign language takes patience.", "source": "seed-v1"}
+{"id": "en-errors-035", "lang": "en", "text": "My best freind lives in another city now.", "expected": "My best friend lives in another city now.", "source": "seed-v1"}
+{"id": "en-errors-036", "lang": "en", "text": "Good grammer makes your writing easier to read.", "expected": "Good grammar makes your writing easier to read.", "source": "seed-v1"}
+{"id": "en-errors-037", "lang": "en", "text": "Call the police immediatly if you see smoke.", "expected": "Call the police immediately if you see smoke.", "source": "seed-v1"}
+{"id": "en-errors-038", "lang": "en", "text": "His knowlege of birds is impressive.", "expected": "His knowledge of birds is impressive.", "source": "seed-v1"}
+{"id": "en-errors-039", "lang": "en", "text": "The new library is very noticable from the bridge.", "expected": "The new library is very noticeable from the bridge.", "source": "seed-v1"}
+{"id": "en-errors-040", "lang": "en", "text": "I prefered the second design.", "expected": "I preferred the second design.", "source": "seed-v1"}
+{"id": "en-errors-041", "lang": "en", "text": "I realy enjoyed the concert last night.", "expected": "I really enjoyed the concert last night.", "source": "seed-v1"}
+{"id": "en-errors-042", "lang": "en", "text": "That detail is not relevent to the case.", "expected": "That detail is not relevant to the case.", "source": "seed-v1"}
+{"id": "en-errors-043", "lang": "en", "text": "The children clapped to the rythm of the drums.", "expected": "The children clapped to the rhythm of the drums.", "source": "seed-v1"}
+{"id": "en-errors-044", "lang": "en", "text": "What a nice suprise to see you here!", "expected": "What a nice surprise to see you here!", "source": "seed-v1"}
+{"id": "en-errors-045", "lang": "en", "text": "The students handed in thier homework late.", "expected": "The students handed in their homework late.", "source": "seed-v1"}
+{"id": "en-errors-046", "lang": "en", "text": "I do not know wether she will come.", "expected": "I do not know whether she will come.", "source": "seed-v1"}
+{"id": "en-errors-047", "lang": "en", "text": "He spends his evenings writting short stories.", "expected": "He spends his evenings writing short stories.", "source": "seed-v1"}
+{"id": "en-errors-048", "lang": "en", "text": "You can acheive a lot with steady practice.", "expected": "You can achieve a lot with steady practice.", "source": "seed-v1"}
+{"id": "en-errors-049", "lang": "en", "text": "She apparantly missed the last train.", "expected": "She apparently missed the last train.", "source": "seed-v1"}
+{"id": "en-errors-050", "lang": "en", "text": "The plan is basicly the same as last year.", "expected": "The plan is basically the same as last year.", "source": "seed-v1"}
+{"id": "en-errors-051", "lang": "en", "text": "The room was completly empty.", "expected": "The room was completely empty.", "source": "seed-v1"}
+{"id": "en-errors-052", "lang": "en", "text": "We finaly found the keys under the sofa.", "expected": "We finally found the keys under the sofa.", "source": "seed-v1"}
+{"id": "en-errors-053", "lang": "en", "text": "Something strange happend at the station.", "expected": "Something strange happened at the station.", "source": "seed-v1"}
+{"id": "en-errors-054", "lang": "en", "text": "It was an intresting lecture about bees.", "expected": "It was an interesting lecture about bees.", "source": "seed-v1"}
+{"id": "en-errors-055", "lang": "en", "text": "I borrowed three books from the libary.", "expected": "I borrowed three books from the library.", "source": "seed-v1"}
+{"id": "en-errors-056", "lang": "en", "text": "Please give me a peice of paper.", "expected": "Please give me a piece of paper.", "source": "seed-v1"}
+{"id": "en-errors-057", "lang": "en", "text": "This sentance has a mistake in it.", "expected": "This sentence has a mistake in it.", "source": "seed-v1"}
+{"id": "en-errors-058", "lang": "en", "text": "Our ideas are similiar in many ways.", "expected": "Our ideas are similar in many ways.", "source": "seed-v1"}
+{"id": "en-errors-059", "lang": "en", "text": "The mayor gave a short speach at the opening.", "expected": "The mayor gave a short speech at the opening.", "source": "seed-v1"}
+{"id": "en-errors-060", "lang": "en", "text": "She lifts weights to build strenght.", "expected": "She lifts weights to build strength.", "source": "seed-v1"}
+{"id": "en-errors-061", "lang": "en", "text": "The temperture dropped below zero at night.", "expected": "The temperature dropped below zero at night.", "source": "seed-v1"}
+{"id": "en-errors-062", "lang": "en", "text": "Do not loose your ticket before the show.", "expected": "Do not lose your ticket before the show.", "source": "seed-v1"}
+{"id": "en-errors-063", "lang": "en", "text": "The weather can effect your mood.", "expected": "The weather can affect your mood.", "source": "seed-v1"}
+{"id": "en-errors-064", "lang": "en", "text": "The company changed it's name last year.", "expected": "The company changed its name last year.", "source": "seed-v1"}
+{"id": "en-errors-065", "lang": "en", "text": "I think your right about the timing.", "expected": "I think you're right about the timing.", "source": "seed-v1"}
+{"id": "en-errors-066", "lang": "en", "text": "This soup is to hot to eat right now.", "expected": "This soup is too hot to eat right now.", "source": "seed-v1"}
+{"id": "en-errors-067", "lang": "en", "text": "The library is quite in the early morning.", "expected": "The library is quiet in the early morning.", "source": "seed-v1"}
+{"id": "en-errors-068", "lang": "en", "text": "Everyone came accept my brother.", "expected": "Everyone came except my brother.", "source": "seed-v1"}
+{"id": "en-errors-069", "lang": "en", "text": "Can you give me some advise about laptops?", "expected": "Can you give me some advice about laptops?", "source": "seed-v1"}
+{"id": "en-errors-070", "lang": "en", "text": "Take a deep breathe before you start.", "expected": "Take a deep breath before you start.", "source": "seed-v1"}
+{"id": "en-errors-071", "lang": "en", "text": "We ordered chocolate cake for desert.", "expected": "We ordered chocolate cake for dessert.", "source": "seed-v1"}
+{"id": "en-errors-072", "lang": "en", "text": "He lead the team to victory last season.", "expected": "He led the team to victory last season.", "source": "seed-v1"}
+{"id": "en-errors-073", "lang": "en", "text": "We drove passed the old factory.", "expected": "We drove past the old factory.", "source": "seed-v1"}
+{"id": "en-errors-074", "lang": "en", "text": "The school principle spoke to the parents.", "expected": "The school principal spoke to the parents.", "source": "seed-v1"}
+{"id": "en-errors-075", "lang": "en", "text": "I do not know weather to laugh or cry.", "expected": "I do not know whether to laugh or cry.", "source": "seed-v1"}
+{"id": "en-errors-076", "lang": "en", "text": "Were did you put the scissors?", "expected": "Where did you put the scissors?", "source": "seed-v1"}
+{"id": "en-errors-077", "lang": "en", "text": "Who's jacket is this on the chair?", "expected": "Whose jacket is this on the chair?", "source": "seed-v1"}
+{"id": "en-errors-078", "lang": "en", "text": "They signed a piece agreement after the war.", "expected": "They signed a peace agreement after the war.", "source": "seed-v1"}
+{"id": "en-errors-079", "lang": "en", "text": "Take a short brake every hour.", "expected": "Take a short break every hour.", "source": "seed-v1"}
+{"id": "en-errors-080", "lang": "en", "text": "I need to wash my cloths before the trip.", "expected": "I need to wash my clothes before the trip.", "source": "seed-v1"}
+{"id": "en-errors-081", "lang": "en", "text": "He paid me a nice complement on my work.", "expected": "He paid me a nice compliment on my work.", "source": "seed-v1"}
+{"id": "en-errors-082", "lang": "en", "text": "She writes in her dairy every night.", "expected": "She writes in her diary every night.", "source": "seed-v1"}
+{"id": "en-errors-083", "lang": "en", "text": "The bus fair went up again this year.", "expected": "The bus fare went up again this year.", "source": "seed-v1"}
+{"id": "en-errors-084", "lang": "en", "text": "Come over hear and look at this.", "expected": "Come over here and look at this.", "source": "seed-v1"}
+{"id": "en-errors-085", "lang": "en", "text": "I no the answer to that question.", "expected": "I know the answer to that question.", "source": "seed-v1"}
+{"id": "en-errors-086", "lang": "en", "text": "Let us meat at the cafe at noon.", "expected": "Let us meet at the cafe at noon.", "source": "seed-v1"}
+{"id": "en-errors-087", "lang": "en", "text": "I new he would be late again.", "expected": "I knew he would be late again.", "source": "seed-v1"}
+{"id": "en-errors-088", "lang": "en", "text": "Please turn of the lights when you leave.", "expected": "Please turn off the lights when you leave.", "source": "seed-v1"}
+{"id": "en-errors-089", "lang": "en", "text": "We parked the car and walked though the park.", "expected": "We parked the car and walked through the park.", "source": "seed-v1"}
+{"id": "en-errors-090", "lang": "en", "text": "He through the ball over the fence.", "expected": "He threw the ball over the fence.", "source": "seed-v1"}
+{"id": "en-errors-091", "lang": "en", "text": "I feel week after the long run.", "expected": "I feel weak after the long run.", "source": "seed-v1"}
+{"id": "en-errors-092", "lang": "en", "text": "They are going to the beach with there cousins.", "expected": "They are going to the beach with their cousins.", "source": "seed-v1"}
+{"id": "en-errors-093", "lang": "en", "text": "Their is a small shop around the corner.", "expected": "There is a small shop around the corner.", "source": "seed-v1"}
+{"id": "en-errors-094", "lang": "en", "text": "I would rather walk then take the bus.", "expected": "I would rather walk than take the bus.", "source": "seed-v1"}
+{"id": "en-errors-095", "lang": "en", "text": "Make sure the knot is not too lose.", "expected": "Make sure the knot is not too loose.", "source": "seed-v1"}
+{"id": "en-errors-096", "lang": "en", "text": "The loud music did not effect her sleep.", "expected": "The loud music did not affect her sleep.", "source": "seed-v1"}
+{"id": "en-errors-097", "lang": "en", "text": "The building sight closes at five every day.", "expected": "The building site closes at five every day.", "source": "seed-v1"}
+{"id": "en-errors-098", "lang": "en", "text": "Please right your name in capital letters.", "expected": "Please write your name in capital letters.", "source": "seed-v1"}
+{"id": "en-errors-099", "lang": "en", "text": "The cat licked it's paws after dinner.", "expected": "The cat licked its paws after dinner.", "source": "seed-v1"}
+{"id": "en-errors-100", "lang": "en", "text": "Your going to love this film.", "expected": "You're going to love this film.", "source": "seed-v1"}
+{"id": "en-errors-101", "lang": "en", "text": "She bought to tickets for the evening show.", "expected": "She bought two tickets for the evening show.", "source": "seed-v1"}
+{"id": "en-errors-102", "lang": "en", "text": "We were suppose to meet at eight.", "expected": "We were supposed to meet at eight.", "source": "seed-v1"}
+{"id": "en-errors-103", "lang": "en", "text": "He could of told us earlier.", "expected": "He could have told us earlier.", "source": "seed-v1"}
+{"id": "en-errors-104", "lang": "en", "text": "I am use to waking up early now.", "expected": "I am used to waking up early now.", "source": "seed-v1"}
+{"id": "en-errors-105", "lang": "en", "text": "The affect of the medicine was immediate.", "expected": "The effect of the medicine was immediate.", "source": "seed-v1"}
+{"id": "en-errors-106", "lang": "en", "text": "She is quiet sure about her answer.", "expected": "She is quite sure about her answer.", "source": "seed-v1"}
+{"id": "en-errors-107", "lang": "en", "text": "Please except my apology for the delay.", "expected": "Please accept my apology for the delay.", "source": "seed-v1"}
+{"id": "en-errors-108", "lang": "en", "text": "They crossed the dessert on camels.", "expected": "They crossed the desert on camels.", "source": "seed-v1"}
+{"id": "en-errors-109", "lang": "en", "text": "I past my driving test on the first try.", "expected": "I passed my driving test on the first try.", "source": "seed-v1"}
+{"id": "en-errors-110", "lang": "en", "text": "Its raining again, so take an umbrella.", "expected": "It's raining again, so take an umbrella.", "source": "seed-v1"}
+{"id": "en-errors-111", "lang": "en", "text": "The shop sells stationary and greeting cards.", "expected": "The shop sells stationery and greeting cards.", "source": "seed-v1"}
+{"id": "en-errors-112", "lang": "en", "text": "My neice starts school in September.", "expected": "My niece starts school in September.", "source": "seed-v1"}
+{"id": "en-errors-113", "lang": "en", "text": "The tounge is a strong muscle.", "expected": "The tongue is a strong muscle.", "source": "seed-v1"}
+{"id": "en-errors-114", "lang": "en", "text": "She will sieze every chance to travel.", "expected": "She will seize every chance to travel.", "source": "seed-v1"}
+{"id": "en-errors-115", "lang": "en", "text": "I recieved your message this morning.", "expected": "I received your message this morning.", "source": "seed-v1"}
+{"id": "en-errors-116", "lang": "en", "text": "The train was definatly late again.", "expected": "The train was definitely late again.", "source": "seed-v1"}
+{"id": "en-errors-117", "lang": "en", "text": "Our nieghbors have a new puppy.", "expected": "Our neighbors have a new puppy.", "source": "seed-v1"}
+{"id": "en-errors-118", "lang": "en", "text": "I bought fresh vegtables at the market.", "expected": "I bought fresh vegetables at the market.", "source": "seed-v1"}
+{"id": "en-errors-119", "lang": "en", "text": "The movie was extremly long.", "expected": "The movie was extremely long.", "source": "seed-v1"}
+{"id": "en-errors-120", "lang": "en", "text": "He made a mistak in the last line.", "expected": "He made a mistake in the last line.", "source": "seed-v1"}
+{"id": "en-errors-121", "lang": "en", "text": "Please knock before you enter and wait untill I answer.", "expected": "Please knock before you enter and wait until I answer.", "source": "seed-v1"}
+{"id": "en-errors-122", "lang": "en", "text": "The wheather forecast says it will snow.", "expected": "The weather forecast says it will snow.", "source": "seed-v1"}
+{"id": "en-errors-123", "lang": "en", "text": "I allways drink tea in the morning.", "expected": "I always drink tea in the morning.", "source": "seed-v1"}
+{"id": "en-errors-124", "lang": "en", "text": "The jist of the story is simple.", "expected": "The gist of the story is simple.", "source": "seed-v1"}
+{"id": "en-errors-125", "lang": "en", "text": "He was embarassed by the question.", "expected": "He was embarrassed by the question.", "source": "seed-v1"}
+{"id": "en-errors-126", "lang": "en", "text": "The calander on the wall is from last year.", "expected": "The calendar on the wall is from last year.", "source": "seed-v1"}
+{"id": "en-errors-127", "lang": "en", "text": "We visited the musuem on Saturday.", "expected": "We visited the museum on Saturday.", "source": "seed-v1"}
+{"id": "en-errors-128", "lang": "en", "text": "The resturant near the station closed down.", "expected": "The restaurant near the station closed down.", "source": "seed-v1"}
+{"id": "en-errors-129", "lang": "en", "text": "I need to buy new sissors for the class.", "expected": "I need to buy new scissors for the class.", "source": "seed-v1"}
+{"id": "en-errors-130", "lang": "en", "text": "My brother is taller then my father now.", "expected": "My brother is taller than my father now.", "source": "seed-v1"}
+{"id": "en-errors-131", "lang": "en", "text": "We should of left earlier.", "expected": "We should have left earlier.", "source": "seed-v1"}
+{"id": "en-errors-132", "lang": "en", "text": "The dog wagged it's tail at the visitors.", "expected": "The dog wagged its tail at the visitors.", "source": "seed-v1"}
+{"id": "en-errors-133", "lang": "en", "text": "I beleived every word of his story.", "expected": "I believed every word of his story.", "source": "seed-v1"}
+{"id": "en-errors-134", "lang": "en", "text": "The comittee will vote on Monday.", "expected": "The committee will vote on Monday.", "source": "seed-v1"}
+{"id": "en-errors-135", "lang": "en", "text": "This is the forth time he has called today.", "expected": "This is the fourth time he has called today.", "source": "seed-v1"}
+{"id": "en-errors-136", "lang": "en", "text": "He gave a brief answer and than left the room.", "expected": "He gave a brief answer and then left the room.", "source": "seed-v1"}
+{"id": "en-errors-137", "lang": "en", "text": "The train was cancelled, so we had to wait for the next one and arrived latter than planned.", "expected": "The train was cancelled, so we had to wait for the next one and arrived later than planned.", "source": "seed-v1"}
+{"id": "en-errors-138", "lang": "en", "text": "My grandmother keeps all her old photos in a seperate box under the bed.", "expected": "My grandmother keeps all her old photos in a separate box under the bed.", "source": "seed-v1"}
+{"id": "en-errors-139", "lang": "en", "text": "We could not decide weather to stay at home or go to the beach.", "expected": "We could not decide whether to stay at home or go to the beach.", "source": "seed-v1"}
+{"id": "en-errors-140", "lang": "en", "text": "The teacher said the essay was good, but the conclusion needed more detials.", "expected": "The teacher said the essay was good, but the conclusion needed more details.", "source": "seed-v1"}
+{"id": "en-errors-141", "lang": "en", "text": "After the storm, the roof of the old barn was laying in the field.", "expected": "After the storm, the roof of the old barn was lying in the field.", "source": "seed-v1"}
+{"id": "en-errors-142", "lang": "en", "text": "I asked the waiter for the bill and he brought it strait away.", "expected": "I asked the waiter for the bill and he brought it straight away.", "source": "seed-v1"}
+{"id": "en-errors-143", "lang": "en", "text": "The new phone has a better camera then the old one, but the battery is weaker.", "expected": "The new phone has a better camera than the old one, but the battery is weaker.", "source": "seed-v1"}
+{"id": "en-errors-144", "lang": "en", "text": "She left her bag on the bus and never recieved it back.", "expected": "She left her bag on the bus and never received it back.", "source": "seed-v1"}
+{"id": "en-errors-145", "lang": "en", "text": "The children were too excited to sleep the night before the trip to the zoo and kept asking wen we would leave.", "expected": "The children were too excited to sleep the night before the trip to the zoo and kept asking when we would leave.", "source": "seed-v1"}
+{"id": "en-errors-146", "lang": "en", "text": "He promised to by fresh bread on his way home from work.", "expected": "He promised to buy fresh bread on his way home from work.", "source": "seed-v1"}
+{"id": "en-errors-147", "lang": "en", "text": "The museum is closed on Mondays, so we went their on Tuesday instead.", "expected": "The museum is closed on Mondays, so we went there on Tuesday instead.", "source": "seed-v1"}
+{"id": "en-errors-148", "lang": "en", "text": "I have known him sence we were at primary school together.", "expected": "I have known him since we were at primary school together.", "source": "seed-v1"}
+{"id": "en-errors-149", "lang": "en", "text": "The doctor told him to loose some weight and walk every day.", "expected": "The doctor told him to lose some weight and walk every day.", "source": "seed-v1"}
+{"id": "en-errors-150", "lang": "en", "text": "We sat on the beech and watched the ships go by.", "expected": "We sat on the beach and watched the ships go by.", "source": "seed-v1"}
+{"id": "en-errors-151", "lang": "en", "text": "The report was thorough and usefull, but it arrived a week late.", "expected": "The report was thorough and useful, but it arrived a week late.", "source": "seed-v1"}

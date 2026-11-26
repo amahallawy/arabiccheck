@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "fetch-models": "node --use-system-ca scripts/fetch-models.ts",
-    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p scripts",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p scripts && tsc -p eval",
+    "eval": "npm run build --silent && node eval/src/run.ts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "build": "npm run build -w @arabiccheck/core && npm run build -w @arabiccheck/checker-en -w @arabiccheck/checker-ar && npm run build -w @arabiccheck/worker && npm run build -w @arabiccheck/playground"

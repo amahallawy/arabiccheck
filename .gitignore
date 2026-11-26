@@ -17,6 +17,11 @@ apps/playground/public/models/
 apps/playground/public/ort/
 *.partial
 
+# Evaluation output (results go in the PR description), and local research sets
+# (QALB, ZAEBUC, ...) that must never be committed
+eval/report.json
+eval/local/
+
 # Python (training/)
 __pycache__/
 *.pyc

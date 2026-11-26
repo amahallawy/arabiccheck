@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import type { Change, LoadOptions, TinyfixAr, WordJudgement } from "tinyfix-ar";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { startModelServer, type ModelServer } from "../../../test/support/model-server.js";
+import { startModelServer, type ModelServer } from "../../../scripts/lib/model-server.js";
 import { CHECKER_ID, loadArabicChecker, toSuggestions, type ArabicChecker } from "../src/index.js";
 
 const change = (overrides: Partial<Change> = {}): Change => ({

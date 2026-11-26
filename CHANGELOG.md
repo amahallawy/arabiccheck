@@ -9,6 +9,18 @@ while writing, and names the issue that has the detail. Versions follow
 Merged but not yet released. Each entry moves into the next version's section
 when that version ships.
 
+### We can measure how often the checkers are right
+
+`npm run eval` scores both checkers on about 600 test sentences written for
+ArabicCheck: English and Arabic sentences with typical mistakes, and correct
+text to count wrong changes. It reports how many changes were right, how many
+mistakes were caught, and how many correct words were wrongly changed per 1,000.
+First numbers: about 99% of changes are right in both languages, 83% of English
+and 77% of Arabic mistakes are caught, and no correct word was changed. The
+Arabic numbers count once a native speaker has reviewed the Arabic sentences.
+Research data such as QALB can be scored from your own copy without ever being
+added to the project. (#10)
+
 ### Both checkers work, off the main thread
 
 Still no page to type into (that's next), but the checking itself works. Mixed
